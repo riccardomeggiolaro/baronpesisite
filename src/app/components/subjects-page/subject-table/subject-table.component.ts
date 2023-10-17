@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Subject as iSubject, SubjectFilter, SubjectsService } from 'src/app/services/subjects.service';
 import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
+import { EditSubjectComponent } from '../../dialogs/edit-subject/edit-subject.component';
 
 @Component({
   selector: 'app-subject-table',
@@ -72,6 +73,12 @@ export class SubjectTableComponent implements OnDestroy {
         )
         .subscribe()
       }
+    });
+  }
+
+  edit(){
+    const dialogRef = this.dialog.open(EditSubjectComponent, {
+      data: {},
     });
   }
 }

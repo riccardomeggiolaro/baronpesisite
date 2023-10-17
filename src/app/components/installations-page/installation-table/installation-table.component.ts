@@ -6,6 +6,7 @@ import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { Installation, InstallationFilter, InstallationsService } from 'src/app/services/installations.service';
 import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
 import { MatDialog } from '@angular/material/dialog';
+import { EditInstallationComponent } from '../../dialogs/edit-installation/edit-installation.component';
 
 @Component({
   selector: 'app-installation-table',
@@ -71,6 +72,12 @@ export class InstallationTableComponent implements AfterViewInit, OnInit, OnDest
         )
         .subscribe();
       }
+    });
+  }
+
+  edit(){
+    const dialogRef = this.dialog.open(EditInstallationComponent, {
+      data: {},
     });
   }
 }

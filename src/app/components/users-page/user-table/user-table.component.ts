@@ -8,6 +8,7 @@ import { AuthService, User } from 'src/app/services/auth.service';
 import { UserFilter, UsersService } from 'src/app/services/users.service';
 import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
 import { get } from 'lodash';
+import { EditUserComponent } from '../../dialogs/edit-user/edit-user.component';
 
 @Component({
   selector: 'app-user-table',
@@ -74,6 +75,12 @@ export class UserTableComponent implements AfterViewInit, OnInit, OnDestroy {
         )
         .subscribe()
       }
+    });
+  }
+
+  edit(){
+    const dialogRef = this.dialog.open(EditUserComponent, {
+      data: {},
     });
   }
 

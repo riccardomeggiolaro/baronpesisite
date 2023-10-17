@@ -68,6 +68,10 @@ import { StringPipe } from './pipes/string.pipe';
 import { TypeUserPipe } from './pipes/type-user.pipe';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { IfSuperAdminDirective } from './directives/if-super-admin.directive';
+import { EditUserComponent } from './components/dialogs/edit-user/edit-user.component';
+import { EditInstallationComponent } from './components/dialogs/edit-installation/edit-installation.component';
+import { EditSubjectComponent } from './components/dialogs/edit-subject/edit-subject.component';
+import { EditCardComponent } from './components/dialogs/edit-card/edit-card.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +108,11 @@ import { IfSuperAdminDirective } from './directives/if-super-admin.directive';
     EventFilterComponent,
     StringPipe,
     TypeUserPipe,
-    IfSuperAdminDirective
+    IfSuperAdminDirective,
+    EditUserComponent,
+    EditInstallationComponent,
+    EditSubjectComponent,
+    EditCardComponent
   ],
   imports: [    
     MatBadgeModule,

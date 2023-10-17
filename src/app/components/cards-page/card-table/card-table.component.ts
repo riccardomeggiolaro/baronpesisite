@@ -9,6 +9,7 @@ import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
 import { catchError, takeUntil, throwError, Subject } from 'rxjs';
 import { Subject as iSubject } from 'src/app/services/subjects.service';
 import { get, merge } from 'lodash';
+import { EditCardComponent } from '../../dialogs/edit-card/edit-card.component';
 
 export interface iCard {
   cardCode: string;
@@ -86,6 +87,12 @@ export class CardTableComponent implements OnDestroy {
         )
         .subscribe()
       }
+    });
+  }
+
+  edit(){
+    const dialogRef = this.dialog.open(EditCardComponent, {
+      data: {},
     });
   }
 }
