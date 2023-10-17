@@ -67,6 +67,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { StringPipe } from './pipes/string.pipe';
 import { TypeUserPipe } from './pipes/type-user.pipe';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { IfSuperAdminDirective } from './directives/if-super-admin.directive';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     EventTableComponent,
     EventFilterComponent,
     StringPipe,
-    TypeUserPipe
+    TypeUserPipe,
+    IfSuperAdminDirective
   ],
   imports: [    
     MatBadgeModule,
