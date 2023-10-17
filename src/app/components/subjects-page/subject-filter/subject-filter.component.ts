@@ -6,6 +6,7 @@ import { omitBy } from 'lodash';
 import { Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 import { SubjectFilter, SubjectsService } from 'src/app/services/subjects.service';
 import { AddSubjectComponent } from '../../dialogs/add-subject/add-subject.component';
+import { hasValueInOptionalFields } from 'src/utils/has-value';
 
 @Component({
   selector: 'app-subject-filter',
@@ -57,5 +58,13 @@ export class SubjectFilterComponent {
     this.dialog.open(AddSubjectComponent, {
       data: {username: null}
     });
+  }
+
+  hasValue() {
+    if (hasValueInOptionalFields(this.filtersForm)) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }

@@ -36,6 +36,9 @@
             <td mat-cell *matCellDef="let row">
                 <div [ngStyle]="{'display': isMeOrCan(row.username, row.accessLevel) ? 'none' : ''}" class="actions">
                     <button mat-raised-button color="primary" (click)="disable(row.username, !row.able)"> {{ row.able ? 'Disabilita' : 'Abilita' }}</button>
+                    <button mat-mini-fab color="primary" (click)="delete(row.id)" aria-label="Example icon button with a menu icon" *appIfAdmin>
+                        <mat-icon>edit</mat-icon>
+                    </button>
                     <button mat-mini-fab color="warn" (click)="delete(row.username)" aria-label="Example icon button with a menu icon">
                         <mat-icon>delete</mat-icon>
                     </button>

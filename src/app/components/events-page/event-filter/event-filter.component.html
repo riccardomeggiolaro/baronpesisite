@@ -43,5 +43,5 @@
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button (click)="deleteFilters()">Azzera filtri</button>
+  <button mat-raised-button [disabled]="hasValue()" (click)="deleteFilters()"><i class="pi pi-filter-slash"></i></button>
 </form>

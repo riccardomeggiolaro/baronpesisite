@@ -7,6 +7,7 @@ import { AddUserComponent } from '../../dialogs/add-user/add-user.component';
 import { omitBy, toNumber } from 'lodash';
 import { Router } from '@angular/router';
 import { InstallationsService } from 'src/app/services/installations.service';
+import { hasValueInOptionalFields } from 'src/utils/has-value';
 
 @Component({
   selector: 'app-user-filter',
@@ -64,5 +65,13 @@ export class UserFilterComponent {
     this.dialog.open(AddUserComponent, {
       data: {username: null}
     });
-  }            
+  }           
+  
+  hasValue() {
+    if (hasValueInOptionalFields(this.filtersForm)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

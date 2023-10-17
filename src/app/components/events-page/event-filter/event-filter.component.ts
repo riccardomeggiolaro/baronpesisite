@@ -6,6 +6,7 @@ import { omitBy, toNumber } from 'lodash';
 import { Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 import { EventFilter, EventsService } from 'src/app/services/events.service';
 import { InstallationsService } from 'src/app/services/installations.service';
+import { hasValueInOptionalFields } from 'src/utils/has-value';
 
 @Component({
   selector: 'app-event-filter',
@@ -68,5 +69,13 @@ export class EventFilterComponent {
 
   deleteFilters(){
     this.filtersForm.patchValue({dtMin: null, dtMax: null, cardCode: '', plate: '', socialReason: '', idInstallation: null})
+  }
+
+  hasValue() {
+    if (hasValueInOptionalFields(this.filtersForm)) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }

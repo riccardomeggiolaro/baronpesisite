@@ -6,6 +6,7 @@ import { InstallationsService } from 'src/app/services/installations.service';
 import { AddInstallationComponent } from '../../dialogs/add-installation/add-installation.component';
 import { Router } from '@angular/router';
 import { omitBy } from 'lodash';
+import { hasValueInOptionalFields } from 'src/utils/has-value';
 
 @Component({
   selector: 'app-installation-filter',
@@ -56,5 +57,13 @@ export class InstallationFilterComponent implements OnInit {
     this.dialog.open(AddInstallationComponent, {
       data: {username: null, description: null}
     });
-  }            
+  } 
+  
+  hasValue() {
+    if (hasValueInOptionalFields(this.filtersForm)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

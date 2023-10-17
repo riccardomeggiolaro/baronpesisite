@@ -7,6 +7,7 @@ import { Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 import { CardFilter, CardsService } from 'src/app/services/cards.service';
 import { InstallationsService } from 'src/app/services/installations.service';
 import { AddCardComponent } from '../../dialogs/add-card/add-card.component';
+import { hasValueInOptionalFields } from 'src/utils/has-value';
 
 @Component({
   selector: 'app-card-filter',
@@ -66,5 +67,13 @@ export class CardFilterComponent {
     this.dialog.open(AddCardComponent, {
       data: {username: null}
     });
-  }            
+  }        
+  
+  hasValue() {
+    if (hasValueInOptionalFields(this.filtersForm)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

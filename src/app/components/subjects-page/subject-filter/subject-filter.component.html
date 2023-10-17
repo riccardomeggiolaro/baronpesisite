@@ -14,6 +14,6 @@
     <input matInput placeholder="CFPIVA" #input formControlName="CFPIVA">
   </mat-form-field>
 
-  <button mat-raised-button (click)="deleteFilters()">Azzera filtri</button>
+  <button mat-raised-button [disabled]="hasValue()" (click)="deleteFilters()"><i class="pi pi-filter-slash"></i></button>
   <button mat-raised-button color="primary" (click)="openDialog()">Aggiungi</button>
 </form>
