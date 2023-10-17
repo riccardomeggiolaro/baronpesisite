@@ -78,9 +78,9 @@ export class UserTableComponent implements AfterViewInit, OnInit, OnDestroy {
     });
   }
 
-  edit(){
+  edit(user: User){
     const dialogRef = this.dialog.open(EditUserComponent, {
-      data: {},
+      data: user,
     });
   }
 
@@ -94,6 +94,6 @@ export class UserTableComponent implements AfterViewInit, OnInit, OnDestroy {
 
   isMeOrCan(username: string, accessLevel: number): boolean{
     const user = this.authSrv.getUser();
-    return username === user?.username! || accessLevel >= user!.accessLevel;
+    return username === user?.username! || accessLevel >= user!.accessLevel!;
   }
 }

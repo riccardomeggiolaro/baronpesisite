@@ -75,9 +75,9 @@ export class InstallationTableComponent implements AfterViewInit, OnInit, OnDest
     });
   }
 
-  edit(){
+  edit(installation: Installation){
     const dialogRef = this.dialog.open(EditInstallationComponent, {
-      data: {},
+      data: installation,
     });
   }
 }

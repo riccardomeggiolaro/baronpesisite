@@ -17,6 +17,12 @@ export interface SubjectFilter {
   CFPIVA?: string | null;
 }
 
+export interface iSubject {
+  socialReason?: string | null;
+  telephoneNumber?: number | null;
+  CFPIVA?: string | null;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -71,6 +77,15 @@ export class SubjectsService {
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("add"))
+      )
+  }
+
+  edit(id: number, subject: iSubject){
+    const data = omitBy(subject, isNil);
+    return this.http.patch<{message: string}>(`${this.url}/api/subject/${id}`, data)
+      .pipe(
+        tap(res => this._requestUpdate$.next()),
+        tap(res => this._actions$.next("change"))
       )
   }
 }

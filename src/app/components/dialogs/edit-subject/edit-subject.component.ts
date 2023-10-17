@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { toNumber } from 'lodash';
 import { catchError, throwError } from 'rxjs';
@@ -13,11 +13,7 @@ import { Subject, SubjectsService } from 'src/app/services/subjects.service';
   styleUrls: ['./edit-subject.component.css']
 })
 export class EditSubjectComponent {
-  addForm = this.fb.group({
-    socialReason: ['', {validators: Validators.required, min: 8, max: 50}],
-    telephoneNumber: ['', {validators: Validators.required, min: 6, max: 11}],
-    CFPIVA: ['', {validators: Validators.required, min: 15, max: 30}],
-  })
+  editForm!: FormGroup;
 
   constructor(
     private snackbarSrv: SnackbarsService,
@@ -26,22 +22,27 @@ export class EditSubjectComponent {
     public dialogRef: MatDialogRef<EditSubjectComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Subject,
   ) {
+    this.editForm = this.fb.group({
+      socialReason: [data.socialReason, {validators: Validators.required, min: 8, max: 50}],
+      telephoneNumber: [data.telephoneNumber, {validators: Validators.required, min: 6, max: 11}],
+      CFPIVA: [data.CFPIVA, {validators: Validators.required, min: 15, max: 30}],
+    })
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  add(){
-    if(this.addForm.valid){
-      const { socialReason, telephoneNumber, CFPIVA } = this.addForm.value;
-      this.subjectsSrv.add(socialReason!, toNumber(telephoneNumber!), CFPIVA!)
+  edit(){
+    if(this.editForm.valid){
+      const { socialReason, telephoneNumber, CFPIVA } = this.editForm.value;
+      this.subjectsSrv.edit(this.data.id, {socialReason: (socialReason! === this.data.socialReason ? null : socialReason), telephoneNumber: toNumber(telephoneNumber!), CFPIVA: CFPIVA!})
         .pipe(
           catchError(err => throwError(err))
         )
         .subscribe(
-          (value: Subject) => {
-            this.snackbarSrv.openSnackBar("Soggetto aggiunto!", "green");
+          (value) => {
+            this.snackbarSrv.openSnackBar("Soggetto modificato!", "green");
             this.dialogRef.close();
           },
           (error: HttpErrorResponse) => {

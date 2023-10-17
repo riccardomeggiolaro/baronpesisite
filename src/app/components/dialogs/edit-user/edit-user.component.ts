@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService, User, User as iUser } from 'src/app/services/auth.service';
 import { SnackbarsService } from 'src/app/services/snackbars.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -16,12 +16,7 @@ import { admin } from 'src/utils/global';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent {
-  addForm = this.fb.group({
-    username: ['', {validators: Validators.required, min: 8, max: 50}],
-    password: ['', {validators: Validators.required, min: 8, max: 20}],
-    accessLevel: ['', {validators: Validators.required}],
-    idInstallation: ['']
-  })
+  editForm!: FormGroup;
 
   accessLevels!: number[];
   installations$ = this.installationsSrv.installations$;
@@ -38,13 +33,20 @@ export class EditUserComponent {
     private authSrv: AuthService,
     @Inject(MAT_DIALOG_DATA) public data: User,
   ) {
+    this.editForm = this.fb.group({
+      username: [data.username, {validators: Validators.required, min: 8, max: 50}],
+      password: [null, {min: 8, max: 20}],
+      accessLevel: [data.accessLevel],
+      idInstallation: [data.installationId?.id],
+      able: [Boolean(data.able)]
+    })
   }
 
   ngOnInit(): void {
     this.user = this.authSrv.getUser();
     this.accessLevels = this.array(this.user?.accessLevel!);
     if(this.accessLevels.length === 1){
-      this.addForm.setValue({username: '', password: '', accessLevel: '1', idInstallation: ''});
+      this.editForm.setValue({username: '', password: '', accessLevel: '1', idInstallation: ''});
     }
   }
 
@@ -58,18 +60,15 @@ export class EditUserComponent {
   }
 
   add(){
-    if(this.addForm.valid){
-      let _idInstallation = null;
-      const { username, password, accessLevel, idInstallation } = this.addForm.value;
-      if(idInstallation) _idInstallation = toInteger(idInstallation);
-      console.log(_idInstallation);
-      this.usersSrv.add(username!, password!, toInteger(accessLevel!), _idInstallation)
+    if(this.editForm.valid){
+      const { username, password, accessLevel, idInstallation, able } = this.editForm.value;
+      this.usersSrv.edit(this.data.username, {username: (username === this.data.username ? null : username), password: (password! === '' ? null : password), accessLevel: toInteger(accessLevel!), installationId: (idInstallation ? toNumber(idInstallation) : null), able: able})
         .pipe(
           catchError(err => throwError(err))
         )
         .subscribe(
-          (value: iUser) => {
-            this.snackbarsSrv.openSnackBar("Utente aggiunto!", "green");
+          (value) => {
+            this.snackbarsSrv.openSnackBar("Utente modificato!", "green");
             this.dialogRef.close();
           },
           (error: HttpErrorResponse) => {
@@ -93,7 +92,7 @@ export class EditUserComponent {
   }
 
   toggleRequired(accessLevel: number) {
-    const myFieldControl = this.addForm.get('idInstallation');
+    const myFieldControl = this.editForm.get('idInstallation');
 
     if (myFieldControl) {
       if (accessLevel >= admin) {

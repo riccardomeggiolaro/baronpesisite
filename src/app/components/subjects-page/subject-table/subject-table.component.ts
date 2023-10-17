@@ -76,9 +76,9 @@ export class SubjectTableComponent implements OnDestroy {
     });
   }
 
-  edit(){
+  edit(subject: iSubject){
     const dialogRef = this.dialog.open(EditSubjectComponent, {
-      data: {},
+      data: subject,
     });
   }
 }

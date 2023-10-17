@@ -72,6 +72,7 @@ import { EditUserComponent } from './components/dialogs/edit-user/edit-user.comp
 import { EditInstallationComponent } from './components/dialogs/edit-installation/edit-installation.component';
 import { EditSubjectComponent } from './components/dialogs/edit-subject/edit-subject.component';
 import { EditCardComponent } from './components/dialogs/edit-card/edit-card.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -147,7 +148,8 @@ import { EditCardComponent } from './components/dialogs/edit-card/edit-card.comp
     MatStepperModule,
     MatPaginatorModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSlideToggleModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

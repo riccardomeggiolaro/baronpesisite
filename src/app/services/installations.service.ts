@@ -16,6 +16,12 @@ export interface Installation {
   imei: string;
 }
 
+export interface iInstallation {
+  installationCode?: string | null;
+  description?: string | null;
+  imei?: string | null;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -80,6 +86,17 @@ export class InstallationsService {
           this._requestUpdate$.next();
         }),
         tap(res => this._actions$.next("add"))
+      )
+  }
+
+  edit(id: number, installation: iInstallation){
+    const data = omitBy(installation, isNil);
+    return this.http.patch<{message: string}>(`${this.url}/api/installation/${id}`, data)
+      .pipe(
+        tap(res => {
+          this._filters$.next(this._filters$.value);
+          this._requestUpdate$.next();
+        })
       )
   }
 }

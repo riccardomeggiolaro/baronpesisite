@@ -4,10 +4,21 @@ import { BehaviorSubject, Observable, ReplaySubject, Subject, catchError, combin
 import { User } from './auth.service';
 import { isNil, omitBy } from 'lodash';
 import { environment } from 'src/environments/environment';
+import { Installation } from './installations.service';
+import { admin } from 'src/utils/global';
 
 export interface UserFilter {
   username?: string | null;
   idInstallation?: number | null;
+}
+
+export interface iUser {
+  username?: string | null;
+  password?: string | null;
+  able?: boolean | null;
+  accessLevel?: number | null;
+  lastAccess?: Date | null;
+  installationId?: number | null;
 }
 
 @Injectable({
@@ -73,6 +84,16 @@ export class UsersService {
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("add"))
+      )
+  }
+
+  edit(user: string, iuser: iUser){
+    const data = omitBy(iuser, isNil);
+    if((data["accessLevel"] >= admin)) data["installationId"] = null;
+    return this.http.patch<{message: string}>(`${this.url}api/user/${user}`, data)
+      .pipe(
+        tap(res => this._requestUpdate$.next()),
+        tap(res => this._actions$.next("change"))
       )
   }
 }
