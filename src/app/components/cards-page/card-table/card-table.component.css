@@ -9,6 +9,12 @@ table {
 button{
     margin: 3px;
 }
+mat-card-footer{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 5px;
+    justify-content: end;
+}
 mat-paginator{
     background-color: var(--primary-color);
     color: var(--white);

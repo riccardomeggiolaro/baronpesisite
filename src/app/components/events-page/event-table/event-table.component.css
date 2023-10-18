@@ -44,11 +44,23 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 mat-card-footer{
     display: flex; 
-    flex-direction: row; 
-    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 5px;
+}
+mat-card-footer > div{
+    flex: 20%;
+}
+mat-card-footer > mat-paginator{
+    flex-direction: 80%;
+}
+@media (max-width: 800px){
+    mat-card-footer > div,
+    mat-card-footer > mat-paginator{
+        flex: 100%;
+    }
 }
 mat-card-footer div{
-    margin-left: 20px; 
+    padding-left: 20px;
     margin-top: auto; 
     margin-bottom: auto;
 }
