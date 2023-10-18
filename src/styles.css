@@ -197,3 +197,7 @@ table::-webkit-scrollbar-thumb:hover {
 .loginForm > .mat-mdc-raised-button.mat-unthemed{
     color: white !important;
 }
+
+.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){
+    color: white !important;
+}
