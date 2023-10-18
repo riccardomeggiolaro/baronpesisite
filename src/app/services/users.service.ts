@@ -90,7 +90,7 @@ export class UsersService {
   edit(user: string, iuser: iUser){
     const data = omitBy(iuser, isNil);
     if((data["accessLevel"] >= admin)) data["installationId"] = null;
-    return this.http.patch<{message: string}>(`${this.url}api/user/${user}`, data)
+    return this.http.patch<{message: string}>(`${this.url}/api/user/${user}`, data)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("change"))
