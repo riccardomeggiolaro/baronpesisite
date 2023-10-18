@@ -85,6 +85,19 @@ html, body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 }
 
+.menu-mobile{
+    display: none;
+}
+
+@media (max-width: 750px){
+    mat-toolbar > button{
+        display: none !important;
+    }
+    .menu-mobile{
+        display: block;
+    }
+}
+
 .filter-users-mobile,
 .filter-installations-mobile,
 .filter-subjects-mobile,

@@ -39,6 +39,20 @@
             <mat-icon>exit_to_app</mat-icon>Logout
         </button>
     </mat-menu>
+    <div class="menu-mobile">
+        <button mat-icon-button [matMenuTriggerFor]="menuMobile"><mat-icon>menu</mat-icon></button>
+        <mat-menu #menuMobile="matMenu">
+            <button mat-menu-item routerLink="events">Eventi</button>
+            <button mat-menu-item routerLink="cards">Carte</button>
+            <button mat-menu-item routerLink="subjects">Soggetti</button>
+            <button mat-menu-item routerLink="installations">Installazioni</button>
+            <button mat-menu-item routerLink="users">Utenti</button>
+            <button mat-menu-item routerLink="my-account">Il mio profilo</button>
+            <button mat-menu-item (click)="sidenav.close(); authSrv.logout()">
+                <mat-icon>exit_to_app</mat-icon>Logout
+            </button>
+        </mat-menu>
+    </div>
 </mat-toolbar>
 
 <mat-sidenav-container class="app-container" [ngClass]="resizeComponent() ? 'not-authenticated' : ''">
