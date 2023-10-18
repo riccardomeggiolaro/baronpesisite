@@ -3,13 +3,8 @@ table {
     overflow: auto
 }
 .actions{
-    display: flex;
-    flex-direction: row;
-}
-.actions button:first-child{
-    width: 80px;
-    margin-top: auto;
-    margin-bottom: auto;
+  display: flex;
+  flex-direction: row;
 }
 button{
     margin: 3px;

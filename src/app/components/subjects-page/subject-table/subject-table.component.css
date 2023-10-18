@@ -6,11 +6,6 @@ table {
     display: flex;
     flex-direction: row;
 }
-.actions button:first-child{
-    width: 80px;
-    margin-top: auto;
-    margin-bottom: auto;
-}
 button{
     margin: 3px;
 }

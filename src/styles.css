@@ -75,6 +75,77 @@ html, body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 }
 
+@media (max-width: 1235px){
+    .mat-mdc-paginator-outer-container {
+        width: 100%;
+    }   
+    .table-events{
+        overflow-x: auto;
+        display: block;
+    }
+}
+
+.filter-users-mobile,
+.filter-installations-mobile,
+.filter-subjects-mobile,
+.filter-cards-mobile,
+.filter-events-mobile{
+    display: none;
+}
+
+@media (max-width: 685px){
+    .filter-users{
+        display: none !important;
+    }
+    .filter-users-mobile{
+        display: block;
+    }
+}
+
+@media (max-width: 685px){
+    .filter-installations{
+        display: none !important;
+    }
+    .filter-installations-mobile{
+        display: block;
+    }
+}
+
+@media (max-width: 916px){
+    .filter-subjects{
+        display: none !important;
+    }
+    .filter-subjects-mobile{
+        display: block;
+    }
+}
+
+@media (max-width: 1148px){
+    .filter-cards{
+        display: none !important;
+    }
+    .filter-cards-mobile{
+        display: block;
+    }
+}
+
+@media (max-width: 1325px){
+    .filter-events{
+        display: none !important;
+    }
+    .filter-events-mobile{
+        display: block;
+    }
+}
+
+.matMenu > .mat-mdc-menu-item {
+    margin: 0px !important;
+}
+
+.matMenu > mat-form-field[_ngcontent-ng-c3921708991]{
+    width: 95%;
+}
+
     /* width */
 table::-webkit-scrollbar {
     height: 10px;

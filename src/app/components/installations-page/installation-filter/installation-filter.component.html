@@ -1,12 +1,31 @@
 <form [formGroup]="filtersForm">
-  <mat-form-field>
-    <mat-label>Codice</mat-label>
-    <input matInput placeholder="Codice" #input formControlName="installationCode">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Descrizione</mat-label>
-    <input matInput placeholder="Descrizione" #input formControlName="description">
-  </mat-form-field>
+  <div class="filter-installations">
+    <mat-form-field>
+      <mat-label>Codice</mat-label>
+      <input matInput placeholder="Codice" #input formControlName="installationCode">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Descrizione</mat-label>
+      <input matInput placeholder="Descrizione" #input formControlName="description">
+    </mat-form-field>
+  </div>
+
+  <div class="filter-installations-mobile">
+    <button mat-raised-button [matMenuTriggerFor]="menu">Filtri</button>
+    <mat-menu #menu="matMenu">
+      <div fxLayout="column" (click)="$event.stopPropagation();" style="width: 100%; margin: 0; padding: 0;" class="matMenu">
+        <mat-form-field>
+          <mat-label>Codice</mat-label>
+          <input matInput placeholder="Codice" #input formControlName="installationCode">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Descrizione</mat-label>
+          <input matInput placeholder="Descrizione" #input formControlName="description">
+        </mat-form-field>
+      </div>
+    </mat-menu>
+  </div>
 
   <button mat-raised-button [disabled]="hasValue()" (click)="deleteFilters()"><i class="pi pi-filter-slash"></i></button>
   <button mat-raised-button color="primary" (click)="openDialog()">Aggiungi</button>

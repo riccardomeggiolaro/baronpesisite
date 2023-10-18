@@ -1,18 +1,42 @@
 <form [formGroup]="filtersForm">
-  <mat-form-field>
-    <mat-label>Ragione Sociale</mat-label>
-    <input matInput placeholder="Ragione Sociale" #input formControlName="socialReason">
-  </mat-form-field>
+  <div class="filter-subjects">
+    <mat-form-field>
+      <mat-label>Ragione Sociale</mat-label>
+      <input matInput placeholder="Ragione Sociale" #input formControlName="socialReason">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Numero Di Telefono</mat-label>
+      <input matInput placeholder="Numero Di Telefono" #input formControlName="telephoneNumber">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>CFPIVA</mat-label>
+      <input matInput placeholder="CFPIVA" #input formControlName="CFPIVA">
+    </mat-form-field>
+  </div>
 
-  <mat-form-field>
-    <mat-label>Numero Di Telefono</mat-label>
-    <input matInput placeholder="Numero Di Telefono" #input formControlName="telephoneNumber">
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>CFPIVA</mat-label>
-    <input matInput placeholder="CFPIVA" #input formControlName="CFPIVA">
-  </mat-form-field>
+  <div class="filter-subjects-mobile">
+    <button mat-raised-button [matMenuTriggerFor]="menu">Filtri</button>
+    <mat-menu #menu="matMenu">
+      <div fxLayout="column" (click)="$event.stopPropagation();" style="width: 100%; margin: 0; padding: 0;" class="matMenu">
+        <mat-form-field>
+          <mat-label>Ragione Sociale</mat-label>
+          <input matInput placeholder="Ragione Sociale" #input formControlName="socialReason">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Numero Di Telefono</mat-label>
+          <input matInput placeholder="Numero Di Telefono" #input formControlName="telephoneNumber">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>CFPIVA</mat-label>
+          <input matInput placeholder="CFPIVA" #input formControlName="CFPIVA">
+        </mat-form-field>
+      </div>
+    </mat-menu>
+  </div>
 
   <button mat-raised-button [disabled]="hasValue()" (click)="deleteFilters()"><i class="pi pi-filter-slash"></i></button>
   <button mat-raised-button color="primary" (click)="openDialog()">Aggiungi</button>

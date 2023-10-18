@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { isNil, omitBy } from 'lodash';
-import { BehaviorSubject, ReplaySubject, catchError, combineLatest, of, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, catchError, combineLatest, of, pipe, switchMap, tap, throwError } from 'rxjs';
 import { Subject } from './subjects.service';
 import { Installation } from './installations.service';
 import { HttpClient } from '@angular/common/http';
@@ -14,12 +14,22 @@ export interface CardFilter {
 }
 
 export interface Card {
+  id: number;
   cardCode: string;
   vehicle: string;
   plate: string;
   tare: number;
   subjectId?: Subject;
   installationId?: Installation;
+}
+
+export interface iCard {
+  cardCode?: string | null;
+  vehicle?: string | null;
+  plate?: string | null;
+  tare?: number | null;
+  subjectId?: number | null;
+  installationId?: number | null;
 }
 
 @Injectable({
@@ -76,6 +86,14 @@ export class CardsService {
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("add"))
+      )
+  }
+
+  edit(id: number, card: iCard){
+    const data = omitBy(card, isNil);
+    return this.http.patch<{message: string}>(`${this.url}/api/card/${id}`, data)
+      .pipe(
+        tap(res => this._requestUpdate$.next())
       )
   }
 }

@@ -90,9 +90,9 @@ export class CardTableComponent implements OnDestroy {
     });
   }
 
-  edit(){
+  edit(card: Card){
     const dialogRef = this.dialog.open(EditCardComponent, {
-      data: {},
+      data: card,
     });
   }
 }

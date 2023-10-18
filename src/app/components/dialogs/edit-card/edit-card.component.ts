@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService, User } from 'src/app/services/auth.service';
 import { Card, CardsService } from 'src/app/services/cards.service';
@@ -19,13 +19,7 @@ import { SubjectsService } from 'src/app/services/subjects.service';
   styleUrls: ['./edit-card.component.css']
 })
 export class EditCardComponent {
-  addForm = this.fb.group({
-    cardCode: ['', {validators: Validators.required, min: 6, max: 30}],
-    vehicle: ['', {validators: Validators.required, min: 4, max: 20}],
-    plate: ['', {validators: Validators.required, min: 6, max: 20}],
-    idSubject: ['', {validators: Validators.required}],
-    idInstallation: ['']
-  })
+  editForm!: FormGroup;
 
   subjects$ = this.subjectsSrv.subjects$;
   installations$ = this.installationsSrv.installations$;
@@ -46,6 +40,13 @@ export class EditCardComponent {
     private authSrv: AuthService,
     @Inject(MAT_DIALOG_DATA) public data: Card,
   ) {
+    this.editForm = this.fb.group({
+      cardCode: [data.cardCode, {validators: Validators.required, min: 6, max: 30}],
+      vehicle: [data.vehicle, {validators: Validators.required, min: 4, max: 20}],
+      plate: [data.plate, {validators: Validators.required, min: 6, max: 20}],
+      idSubject: [data.subjectId?.id, {validators: Validators.required}],
+      idInstallation: [data.installationId?.id]
+    })
   }
 
   ngOnInit(): void {
@@ -61,21 +62,16 @@ export class EditCardComponent {
     this.dialogRef.close();
   }
 
-  add(){
-    if(this.addForm.valid){
-      let _idSubject = null;
-      let _idInstallation = null;
-      const { cardCode, vehicle, plate, idSubject, idInstallation } = this.addForm.value;
-      if(idSubject) _idSubject = toInteger(idSubject);
-      if(idInstallation) _idInstallation = toInteger(idInstallation);
-      console.log(_idInstallation);
-      this.cardsSrv.add(cardCode!, vehicle!, plate!, _idSubject!, _idInstallation!)
+  edit(){
+    if(this.editForm.valid){
+      const { cardCode, vehicle, plate, idSubject, idInstallation } = this.editForm.value;
+      this.cardsSrv.edit(this.data.id!, {cardCode: (cardCode === this.data.cardCode ? null : cardCode), vehicle: vehicle!, plate: plate!, subjectId: (idSubject !== null ? toNumber(idSubject) : null), installationId: (idInstallation !== null ? toNumber(idInstallation) : null)})
         .pipe(
           catchError(err => throwError(err))
         )
         .subscribe(
-          (value: iCard) => {
-            this.snackbarsSrv.openSnackBar("Carta aggiunta!", "green");
+          (value) => {
+            this.snackbarsSrv.openSnackBar("Carta modificata!", "green");
             this.dialogRef.close();
           },
           (error: HttpErrorResponse) => {
@@ -106,7 +102,7 @@ export class EditCardComponent {
   }
 
   private toggleRequired(accessLevel: number) {
-    const myFieldControl = this.addForm.get('idInstallation');
+    const myFieldControl = this.editForm.get('idInstallation');
 
     if (myFieldControl) {
       if (accessLevel >= admin) {
