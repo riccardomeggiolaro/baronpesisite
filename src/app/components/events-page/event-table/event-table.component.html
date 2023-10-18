@@ -12,7 +12,7 @@
 
     <ng-container matColumnDef="cardCode.cardCode">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Codice Carta </th>
-        <td mat-cell *matCellDef="let row"> {{row.cardCode?.cardCode ? row.cardCode?.cardCode : row.cardCode}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.cardCode?.cardCode}} </td>
     </ng-container>
 
     <ng-container matColumnDef="cardCode.plate">
@@ -52,7 +52,7 @@
 
     <ng-container matColumnDef="installationId.installationCode">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Codice Installazione </th>
-        <td mat-cell *matCellDef="let row"> {{row.installationId?.installationCode ? row.installationId?.installationCode : row.installationId}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.installationId?.installationCode}} </td>
     </ng-container>
 
     <ng-container matColumnDef="actions" stickyEnd>
