@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://on.baron.it/'
+    apiUrl: 'http://localhost:3000'
 };

@@ -12,7 +12,7 @@
 
     <ng-container matColumnDef="cardCode.cardCode">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Codice Carta </th>
-        <td mat-cell *matCellDef="let row"> {{row.cardCode?.cardCode}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.cardCode?.cardCode ? row.cardCode.cardCode : row.cardCode}} </td>
     </ng-container>
 
     <ng-container matColumnDef="cardCode.plate">
@@ -27,7 +27,7 @@
 
     <ng-container matColumnDef="pid1_pid2">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Pid1/Pid2 </th>
-        <td mat-cell *matCellDef="let row"> {{row.pid1 || '---------'}} <br> {{row.pid2 || '--------'}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.pid1}} <br> {{row.pid2}} </td>
     </ng-container>
 
     <ng-container matColumnDef="weight1">
