@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, ReplaySubject, catchError, combineLatest, of, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, catchError, combineLatest, of, switchMap, tap, throwError } from 'rxjs';
 import { isNil, omitBy } from 'lodash';
 import { HttpClient } from '@angular/common/http';
 import { Card } from './cards.service';
@@ -71,6 +71,28 @@ export class EventsService {
     this._filters$.next(filters);
     this._actions$.next("filter");
   }
+
+  exportList(ext: "xlsx" | "csv" | "pdf") {
+    const q = omitBy(this._filters$.value, isNil);
+    return this.http.get(`${this.url}/api/event/export-list/${ext}`, {params: q, responseType: 'blob'}).subscribe((blob: Blob) => {
+      var blob = new Blob([blob], {type: `application/${ext}`})
+      var blobURL = URL.createObjectURL(blob);
+      if(ext === "pdf"){
+        window.open(blobURL, "sss");
+      }else{
+        let a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = blobURL;
+        let date = new Date().toLocaleDateString()
+        let time = new Date().toLocaleTimeString()
+        a.download = `pesate-${date}-${time}.${ext}`;
+        a.click();
+        window.URL.revokeObjectURL(blobURL);
+        a.remove();
+      }
+    })
+  }
 
   delete(id: number) {
     return this.http.delete<{message: string}>(`${this.url}/api/event/${id}`)

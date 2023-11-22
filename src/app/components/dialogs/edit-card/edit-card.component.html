@@ -2,7 +2,7 @@
     <h1 mat-dialog-title>Modifica carta</h1>
     <div mat-dialog-content>
       <form [formGroup]="editForm">
-        <mat-form-field>
+        <mat-form-field *appIfSuperAdmin>
           <mat-label>Codice Carta</mat-label>
           <input matInput type="text" formControlName="cardCode" minlength="6" [maxlength]="30">
           <mat-hint align="start">Min 6 caratteri</mat-hint>
@@ -30,7 +30,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-        <mat-form-field *appIfAdmin>
+        <mat-form-field *appIfSuperAdmin>
           <mat-label>Installazione</mat-label>
           <mat-select formControlName="idInstallation">
             <mat-option *ngFor="let installation of installations$ | async" [value]="installation.id">

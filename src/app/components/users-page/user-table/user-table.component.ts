@@ -20,6 +20,7 @@ export class UserTableComponent implements AfterViewInit, OnInit, OnDestroy {
   dataSource: MatTableDataSource<User>;
   filter: UserFilter | null | undefined;
   private destroyed$ = new Subject<void>();
+  username: string | undefined;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
   @ViewChild(MatSort) sort: MatSort | null = null;
@@ -33,6 +34,7 @@ export class UserTableComponent implements AfterViewInit, OnInit, OnDestroy {
     }
 
   ngOnInit(): void {
+    this.username = this.authSrv.getUser()?.username;
     this.usersSrv.users$
       .pipe(
         takeUntil(this.destroyed$)

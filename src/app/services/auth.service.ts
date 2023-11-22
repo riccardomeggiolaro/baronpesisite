@@ -6,6 +6,7 @@ import { JwtService } from "./jwt.service";
 import { Location } from "@angular/common";
 import { Installation } from "./installations.service";
 import { environment } from "src/environments/environment";
+import * as moment from "moment";
 
 export interface User {
   id: number;
@@ -78,7 +79,10 @@ export class AuthService {
 
   lastAccess(status: "offline" | "online"){
     let obj: any = {};
-    if(status === "offline") obj["date"] = Date.now();
-    this.http.patch(`${this.url}/api/user/update/last-access`, obj);
+    if(status === "offline") {
+      const now = moment()
+      obj["date"] = now.format("YYYY-MM-DD HH:mm:ss")
+    };
+    this.http.patch(`${this.url}/api/user/update/last-access`, obj).subscribe();
   }
 }

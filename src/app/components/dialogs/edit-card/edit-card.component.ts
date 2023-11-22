@@ -50,7 +50,7 @@ export class EditCardComponent {
   }
 
   ngOnInit(): void {
-    this.isAdmin();
+    this.isSuperAdmin();
   }
 
   ngOnDestroy(): void {
@@ -85,7 +85,7 @@ export class EditCardComponent {
     }
   }
 
-  private isAdmin() {
+  private isSuperAdmin() {
     this.authSrv.currentUser$
     .pipe(
       takeUntil(this.destroyed$)
@@ -102,16 +102,20 @@ export class EditCardComponent {
   }
 
   private toggleRequired(accessLevel: number) {
-    const myFieldControl = this.editForm.get('idInstallation');
+    const idInstallation = this.editForm.get('idInstallation');
+    const cardCode = this.editForm.get('cardCode');
 
-    if (myFieldControl) {
+    if (idInstallation && cardCode) {
       if (accessLevel >= admin) {
-        myFieldControl.setValidators(Validators.required); // Aggiungi Validators.required
+        idInstallation.setValidators(Validators.required); // Aggiungi Validators.required
+        cardCode?.setValidators(Validators.required);
       } else {
-        myFieldControl.clearValidators(); // Rimuovi Validators.required
+        idInstallation.clearValidators(); // Rimuovi Validators.required
+        cardCode?.clearValidators();
       }
 
-      myFieldControl.updateValueAndValidity();
+      idInstallation.updateValueAndValidity();
+      cardCode.updateValueAndValidity();
     }
   }
 

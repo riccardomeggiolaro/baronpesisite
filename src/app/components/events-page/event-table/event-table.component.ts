@@ -91,29 +91,7 @@ export class EventTableComponent implements OnDestroy {
   }
 
   exportArray(ext: "xlsx" | "csv" | "pdf") {
-    const onlyNameAndSymbolArr: Partial<any>[] = this.dataSource.data.map(x => {
-      const k = x as any;
-      return [
-        new Date(k.dt_create).toLocaleString(),
-        k.cardCode?.cardCode,
-        k.cardCode?.plate,
-        k.cardCode?.subjectId?.socialReason,
-        k.pid1 + "\n" + x.pid2,
-        k.weight1,
-        k.weight2,
-        k.netWeight,
-        k.material,
-        k.installationId?.installationCode,
-        k.note1,
-        k.note2
-      ]
-    })
-    const Headers = ["Data", "Codice Carta", "Targa", "Ragione Sociale", "Pid1/Pid2", "Peso1", "Peso2", "Peso Netto", "Materiale", "Codice Installazione", "Note1", "Note2"]
-    if(ext === "xlsx" || ext === "csv"){
-      TableUtil.exportArray(Headers, onlyNameAndSymbolArr, ext);
-    }else{
-      TableUtil.generatePDF(Headers, onlyNameAndSymbolArr);
-    }
+    this.eventsSrv.exportList(ext);
   }
 
   delete(id: number){
