@@ -57,7 +57,7 @@ export class EventsService {
         const q = omitBy(filters, isNil);
         return this.http.get<Event[]>(`${this.url}/api/event/list`, {params: q})
           .pipe(
-            catchError(err => of([]))
+            catchError(err => {console.log(err); return of([])})
           )
       }
     )

@@ -1,14 +1,13 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AuthService, User } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { CardsService } from 'src/app/services/cards.service';
 import { InstallationsService } from 'src/app/services/installations.service';
 import { SnackbarsService } from 'src/app/services/snackbars.service';
-import { UsersService } from 'src/app/services/users.service';
 import { admin } from 'src/utils/global';
 import { HttpErrorResponse } from '@angular/common/http';
-import { toInteger, toNumber } from 'lodash';
+import { toInteger } from 'lodash';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { Card as iCard } from '../../../services/cards.service';
 import { SubjectsService } from 'src/app/services/subjects.service';

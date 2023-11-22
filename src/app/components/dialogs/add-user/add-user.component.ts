@@ -1,13 +1,12 @@
-import { Component, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { toInteger, toNumber } from 'lodash';
-import { BehaviorSubject, catchError, throwError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
-import { admin, superAdmin } from 'src/utils/global';
+import { admin } from 'src/utils/global';
 import { User as iUser } from 'src/app/services/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SnackbarsService } from 'src/app/services/snackbars.service';
 import { InstallationsService } from 'src/app/services/installations.service';
