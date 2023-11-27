@@ -17,7 +17,7 @@ export class EventFilterComponent {
   filtersForm = this.fb.group({
     dtMin: this.fb.control<Date|null>(null),
     dtMax: this.fb.control<Date|null>(null),
-    cardCode: this.fb.control<string|null>(''),
+    numberCard: this.fb.control<string|null>(''),
     plate: this.fb.control<string|null>(''),
     socialReason: this.fb.control<string|null>(''),
     idInstallation: this.fb.control<number|null>(null)
@@ -35,7 +35,7 @@ export class EventFilterComponent {
 
   ngOnInit(): void {
     this.eventsSrv.filters$.subscribe(value => {
-      this.filtersForm.patchValue(value || {dtMin: null, dtMax: null, cardCode: '', plate: '', socialReason: '', idInstallation: null}, {emitEvent: false});
+      this.filtersForm.patchValue(value || {dtMin: null, dtMax: null, numberCard: '', plate: '', socialReason: '', idInstallation: null}, {emitEvent: false});
       if(this.filtersForm.value.idInstallation){
         let idInstallation = toNumber(this.filtersForm.value.idInstallation);
         this.filtersForm.get('idInstallation')?.setValue(idInstallation);
@@ -54,6 +54,7 @@ export class EventFilterComponent {
     .pipe(
       takeUntil(this.destroyed$),
       filter(_ => this.filtersForm.valid),
+      map(value => omitBy(value, val => val === '')),
       debounceTime(200)
     )
     .subscribe(value => {
@@ -70,7 +71,7 @@ export class EventFilterComponent {
   }
 
   deleteFilters(){
-    this.filtersForm.patchValue({dtMin: null, dtMax: null, cardCode: '', plate: '', socialReason: '', idInstallation: null})
+    this.filtersForm.patchValue({dtMin: null, dtMax: null, numberCard: '', plate: '', socialReason: '', idInstallation: null})
   }
 
   hasValue() {

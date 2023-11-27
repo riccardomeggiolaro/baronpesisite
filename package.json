@@ -25,6 +25,7 @@
     "jspdf-autotable": "^3.6.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
+    "ngx-progressbar": "^11.1.0",
     "pdf": "^0.1.0",
     "pdfjs-dist": "^4.0.189",
     "primeicons": "^6.0.1",

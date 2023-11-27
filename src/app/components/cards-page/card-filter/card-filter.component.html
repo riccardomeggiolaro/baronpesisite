@@ -1,13 +1,13 @@
 <form [formGroup]="filtersForm">
     <div class="filter-cards">
       <mat-form-field>
-        <mat-label>Codice Carta</mat-label>
-        <input matInput placeholder="Codice carta" #input formControlName="cardCode">
+        <mat-label>Numero Carta</mat-label>
+        <input matInput placeholder="Numero carta" #input formControlName="numberCard">
       </mat-form-field>
 
       <mat-form-field>
           <mat-label>Targa</mat-label>
-          <input matInput placeholder="Codice carta" #input formControlName="plate">
+          <input matInput placeholder="Targa" #input formControlName="plate">
       </mat-form-field>
 
       <mat-form-field>
@@ -39,8 +39,8 @@
       <mat-menu #menu="matMenu">
         <div fxLayout="column" (click)="$event.stopPropagation();" style="width: 100%; margin: 0; padding: 0;" class="matMenu">
           <mat-form-field>
-            <mat-label>Codice Carta</mat-label>
-            <input matInput placeholder="Codice carta" #input formControlName="cardCode">
+            <mat-label>Numero Carta</mat-label>
+            <input matInput placeholder="Numero carta" #input formControlName="numberCard">
           </mat-form-field>
           <br>
           <mat-form-field>

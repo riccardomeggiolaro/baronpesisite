@@ -5,6 +5,6 @@ import { CardsService } from 'src/app/services/cards.service';
 
 export const cardsResolver: ResolveFn<void> = (route, state) => {
   const cardSrv = inject(CardsService);
-  const filters = pick(route.queryParams, ['cardCode', 'plate', 'socialReason', 'idInstallation']);
+  const filters = pick(route.queryParams, ['numberCard', 'plate', 'socialReason', 'idInstallation']);
   cardSrv.list(filters);
 };

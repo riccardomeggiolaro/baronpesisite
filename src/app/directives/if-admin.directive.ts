@@ -1,8 +1,7 @@
 import { Directive, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
-import { Subject, catchError, first, last, skip, switchMap, takeUntil, throwError } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { AuthService, User } from '../services/auth.service';
 import { admin } from 'src/utils/global';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Directive({
   selector: '[appIfAdmin]'

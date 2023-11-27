@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { isNil, omitBy } from 'lodash';
-import { BehaviorSubject, ReplaySubject, catchError, combineLatest, of, pipe, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, catchError, combineLatest, of, switchMap, tap, throwError } from 'rxjs';
 import { Subject } from './subjects.service';
 import { Installation } from './installations.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 export interface CardFilter {
-  cardCode?: string | null;
+  numberCard?: string | null;
   plate?: string | null;
   socialReason?: string | null;
   installationId?: number | null;
@@ -16,6 +16,7 @@ export interface CardFilter {
 export interface Card {
   id: number;
   cardCode: string;
+  numberCard: string;
   vehicle: string;
   plate: string;
   tare: number;
@@ -25,6 +26,7 @@ export interface Card {
 
 export interface iCard {
   cardCode?: string | null;
+  numberCard?: string | null;
   vehicle?: string | null;
   plate?: string | null;
   tare?: number | null;
@@ -81,8 +83,8 @@ export class CardsService {
       )
   }
 
-  add(cardCode: string, vehicle: string, plate: string, idSubject: number, idInstallation: number){
-    return this.http.post<Card>(`${this.url}/api/card/add-card`, {cardCode, vehicle, plate, idSubject, idInstallation})
+  add(cardCode: string, numberCard: string, vehicle: string, plate: string, idSubject: number, idInstallation: number){
+    return this.http.post<Card>(`${this.url}/api/card/add-card`, {cardCode, numberCard, vehicle, plate, idSubject, idInstallation})
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("add"))

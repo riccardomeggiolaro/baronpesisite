@@ -65,7 +65,7 @@ html, body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 }
 
-@media (max-width: 867px){
+@media (max-width: 985px){
     .mat-mdc-paginator-outer-container {
         width: 100%;
     }   

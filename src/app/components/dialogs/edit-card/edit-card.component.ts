@@ -40,6 +40,7 @@ export class EditCardComponent {
   ) {
     this.editForm = this.fb.group({
       cardCode: [data.cardCode, {validators: Validators.required, min: 6, max: 30}],
+      numberCard: [data.numberCard, {validators: Validators.required, min: 4, max: 4}],
       vehicle: [data.vehicle, {validators: Validators.required, min: 4, max: 20}],
       plate: [data.plate, {validators: Validators.required, min: 6, max: 20}],
       idSubject: [data.subjectId?.id, {validators: Validators.required}],
@@ -62,8 +63,8 @@ export class EditCardComponent {
 
   edit(){
     if(this.editForm.valid){
-      const { cardCode, vehicle, plate, idSubject, idInstallation } = this.editForm.value;
-      this.cardsSrv.edit(this.data.id!, {cardCode: (cardCode === this.data.cardCode ? null : cardCode), vehicle: vehicle!, plate: plate!, subjectId: (idSubject !== null ? toNumber(idSubject) : null), installationId: (idInstallation !== null ? toNumber(idInstallation) : null)})
+      const { cardCode, numberCard, vehicle, plate, idSubject, idInstallation } = this.editForm.value;
+      this.cardsSrv.edit(this.data.id!, {cardCode: (cardCode === this.data.cardCode ? null : cardCode), numberCard: (numberCard === this.data.numberCard ? null : numberCard), vehicle: vehicle!, plate: plate!, subjectId: (idSubject !== null ? toNumber(idSubject) : null), installationId: (idInstallation !== null ? toNumber(idInstallation) : null)})
         .pipe(
           catchError(err => throwError(err))
         )
@@ -102,20 +103,25 @@ export class EditCardComponent {
   private toggleRequired(accessLevel: number) {
     const idInstallation = this.editForm.get('idInstallation');
     const cardCode = this.editForm.get('cardCode');
+    const numberCard = this.editForm.get('numberCard');
 
     if (idInstallation && cardCode) {
       if (accessLevel === superAdmin) {
         idInstallation.setValidators(Validators.required); // Aggiungi Validators.required
-        cardCode?.setValidators(Validators.required);
+        numberCard?.setValidators(Validators.required);
+        numberCard?.setValidators(Validators.required);
       } else {
         idInstallation.reset();
         cardCode.reset();
+        numberCard?.reset();
         idInstallation.clearValidators(); // Rimuovi Validators.required
         cardCode?.clearValidators();
+        numberCard?.clearValidators();
       }
 
       idInstallation.updateValueAndValidity();
       cardCode.updateValueAndValidity();
+      numberCard?.updateValueAndValidity();
     }
   }
 

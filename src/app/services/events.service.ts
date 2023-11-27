@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject, catchError, combineLatest, of, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, catchError, combineLatest, of, switchMap, tap, throwError } from 'rxjs';
 import { isNil, omitBy } from 'lodash';
 import { HttpClient } from '@angular/common/http';
 import { Card } from './cards.service';
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export interface EventFilter {
   dtMin?: Date | null;
   dtMax?: Date | null;
-  cardCode?: string | null;
+  numberCard?: string | null;
   plate?: string | null;
   socialReason?: string | null;
   idInstallation?: number | null;

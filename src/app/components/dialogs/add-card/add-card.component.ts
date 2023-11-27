@@ -14,6 +14,7 @@ import { SubjectsService } from 'src/app/services/subjects.service';
 
 interface Card {
   cardCode: string;
+  numberCard: string;
   vehicle: string;
   plate: string;
   tare: number;
@@ -29,6 +30,7 @@ interface Card {
 export class AddCardComponent implements OnInit, OnDestroy {
   addForm = this.fb.group({
     cardCode: ['', {validators: Validators.required, min: 6, max: 30}],
+    numberCard: ['', {validators: Validators.required, min: 4, max: 4}],
     vehicle: ['', {validators: Validators.required, min: 4, max: 20}],
     plate: ['', {validators: Validators.required, min: 6, max: 20}],
     idSubject: ['', {validators: Validators.required}],
@@ -73,11 +75,11 @@ export class AddCardComponent implements OnInit, OnDestroy {
     if(this.addForm.valid){
       let _idSubject = null;
       let _idInstallation = null;
-      const { cardCode, vehicle, plate, idSubject, idInstallation } = this.addForm.value;
+      const { cardCode, numberCard, vehicle, plate, idSubject, idInstallation } = this.addForm.value;
       if(idSubject) _idSubject = toInteger(idSubject);
       if(idInstallation) _idInstallation = toInteger(idInstallation);
       console.log(_idInstallation);
-      this.cardsSrv.add(cardCode!, vehicle!, plate!, _idSubject!, _idInstallation!)
+      this.cardsSrv.add(cardCode!, numberCard!, vehicle!, plate!, _idSubject!, _idInstallation!)
         .pipe(
           catchError(err => throwError(err))
         )

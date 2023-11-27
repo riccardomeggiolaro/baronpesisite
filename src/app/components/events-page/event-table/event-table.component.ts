@@ -7,9 +7,6 @@ import { Event, EventFilter, EventsService } from 'src/app/services/events.servi
 import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { TableUtil } from 'src/utils/tableUtil';
-import jsPDF from "jspdf";
-import autoTable from 'jspdf-autotable'
 import { get } from 'lodash';
 
 interface PeriodicElement {
@@ -41,7 +38,7 @@ interface PeriodicElement {
   ],
 })
 export class EventTableComponent implements OnDestroy {
-  displayedColumns: string[] = ['dt_create', "cardCode.cardCode", "cardCode.plate", "cardCode.subjectId.socialReason", 'pid1_pid2', 'weight1', 'weight2', 'netWeight', 'material', 'installationId.installationCode', 'actions'];
+  displayedColumns: string[] = ['dt_create', "cardCode.numberCard", "cardCode.plate", "cardCode.subjectId.socialReason", 'pid1_pid2', 'weight1', 'weight2', 'netWeight', 'material', 'installationId.installationCode', 'actions'];
   dataSource: MatTableDataSource<Event>;
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement!: PeriodicElement | null;

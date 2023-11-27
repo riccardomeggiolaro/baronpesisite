@@ -66,13 +66,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { StringPipe } from './pipes/string.pipe';
 import { TypeUserPipe } from './pipes/type-user.pipe';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { IfSuperAdminDirective } from './directives/if-super-admin.directive';
 import { EditUserComponent } from './components/dialogs/edit-user/edit-user.component';
 import { EditInstallationComponent } from './components/dialogs/edit-installation/edit-installation.component';
 import { EditSubjectComponent } from './components/dialogs/edit-subject/edit-subject.component';
 import { EditCardComponent } from './components/dialogs/edit-card/edit-card.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressHttpModule } from 'ngx-progressbar/http';
 
 @NgModule({
   declarations: [
@@ -149,7 +150,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatPaginatorModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgProgressModule.withConfig({
+      color: "darkgreen",
+    }),
+    NgProgressHttpModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
