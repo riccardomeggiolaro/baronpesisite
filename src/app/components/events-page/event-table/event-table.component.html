@@ -50,9 +50,9 @@
         <td mat-cell *matCellDef="let row"> {{row.material}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="installationId.installationCode">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Codice Installazione </th>
-        <td mat-cell *matCellDef="let row"> {{row.installationId?.installationCode}} </td>
+    <ng-container matColumnDef="installationId.description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrizione Installazione </th>
+        <td mat-cell *matCellDef="let row"> {{row.installationId?.description}} </td>
     </ng-container>
 
     <ng-container matColumnDef="actions" stickyEnd>
@@ -85,7 +85,7 @@
                         <br>
                         <div> <b>Veicolo:</b> {{element.cardCode?.vehicle}} </div>
                         <br>
-                        <div> <b>Descrizione Installazione:</b> {{ element.installationId?.description }} </div>
+                        <div> <b>Codice Installazione:</b> {{ element.installationId?.installationCode }} </div>
                         <br>
                         <div> <b>Imei:</b> {{element.installationId?.imei}} </div>
                         <br>
