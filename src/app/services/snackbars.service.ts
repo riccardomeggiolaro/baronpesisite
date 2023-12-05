@@ -9,7 +9,7 @@ export class SnackbarsService {
   constructor(private snackbar: MatSnackBar) { }
 
   openSnackBar(message: string, color: "red" | "green") {
-    this.snackbar.open(message, "Close", {
+    this.snackbar.open(message, "Chiudi", {
       duration: 3000,
       panelClass: [color],
     });

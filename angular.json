@@ -17,7 +17,7 @@
               "lodash",
               "moment"
             ],
-            "outputPath": "dist/pesi/pesi",
+            "outputPath": "dist/pesi",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
