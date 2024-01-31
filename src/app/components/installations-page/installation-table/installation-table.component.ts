@@ -6,7 +6,7 @@ import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { Installation, InstallationFilter, InstallationsService } from 'src/app/services/installations.service';
 import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
 import { MatDialog } from '@angular/material/dialog';
-import { EditInstallationComponent } from '../../dialogs/edit-installation/edit-installation.component';
+import { EditInstallationComponent } from '../edit-installation/edit-installation.component';
 
 @Component({
   selector: 'app-installation-table',
@@ -59,9 +59,9 @@ export class InstallationTableComponent implements AfterViewInit, OnInit, OnDest
     this.destroyed$.complete();
   }
 
-  delete(id: number){
+  delete(id: number, description: string){
     const dialogRef = this.dialog.open(ConfirmComponent, {
-      data: {action: "Eliminare questa installazione"},
+        data: {action: `eliminare l'installazione "${description}"`},
     });
 
     dialogRef.afterClosed().subscribe(result => {

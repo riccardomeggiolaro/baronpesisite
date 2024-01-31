@@ -11,6 +11,11 @@
       </mat-form-field>
 
       <mat-form-field>
+        <mat-label>Materiale</mat-label>
+        <input matInput placeholder="Materiale" #input formControlName="materialDescription">
+      </mat-form-field>
+
+      <mat-form-field>
         <mat-label>Ragione Sociale</mat-label>
         <input matInput placeholder="Ragione Sociale" #input formControlName="socialReason">
       </mat-form-field>
@@ -45,7 +50,12 @@
           <br>
           <mat-form-field>
               <mat-label>Targa</mat-label>
-              <input matInput placeholder="Codice carta" #input formControlName="plate">
+              <input matInput placeholder="Targa" #input formControlName="plate">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Materiale</mat-label>
+            <input matInput placeholder="Materiale" #input formControlName="materialDescription">
           </mat-form-field>
           <br>
           <mat-form-field>
@@ -75,5 +85,4 @@
     </div>
   
     <button mat-raised-button [disabled]="hasValue()" (click)="deleteFilters()"><i class="pi pi-filter-slash"></i></button>
-    <button mat-raised-button color="primary" (click)="openDialog()" *appIfSuperAdmin>Aggiungi</button>
   </form>

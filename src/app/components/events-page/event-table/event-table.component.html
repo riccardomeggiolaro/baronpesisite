@@ -10,19 +10,19 @@
         <td mat-cell *matCellDef="let row"> {{row.dt_create | datetime}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="cardCode.numberCard">
+    <ng-container matColumnDef="numberCard">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero Carta </th>
-        <td mat-cell *matCellDef="let row"> {{row.cardCode?.numberCard ? row.cardCode.numberCard : row.cardCode}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.numberCard ? row.numberCard : ""}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="cardCode.plate">
+    <ng-container matColumnDef="plate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Targa </th>
-        <td mat-cell *matCellDef="let row"> {{row.cardCode?.plate}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.plate}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="cardCode.subjectId.socialReason">
+    <ng-container matColumnDef="socialReason">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Ragione Sociale </th>
-        <td mat-cell *matCellDef="let row"> {{row.cardCode?.subjectId?.socialReason}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.socialReason}} </td>
     </ng-container>
 
     <ng-container matColumnDef="pid1_pid2">

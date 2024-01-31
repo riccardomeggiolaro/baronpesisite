@@ -3,9 +3,9 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { toNumber } from 'lodash';
-import { catchError, throwError } from 'rxjs';
+import { Subject, catchError, throwError } from 'rxjs';
 import { SnackbarsService } from 'src/app/services/snackbars.service';
-import { Subject, SubjectsService } from 'src/app/services/subjects.service';
+import { Subject as iSubject, SubjectsService } from 'src/app/services/subjects.service';
 
 @Component({
   selector: 'app-add-subject',
@@ -14,18 +14,24 @@ import { Subject, SubjectsService } from 'src/app/services/subjects.service';
 })
 export class AddSubjectComponent {
   addForm = this.fb.group({
-    socialReason: ['', {validators: Validators.required, min: 8, max: 50}],
-    telephoneNumber: ['', {validators: Validators.required, min: 6, max: 11}],
-    CFPIVA: ['', {validators: Validators.required, min: 15, max: 30}],
+    socialReason: ['', {validators: Validators.required, max: 50}],
+    telephoneNumber: ['', Validators.maxLength(20)],
+    CFPIVA: ['', Validators.maxLength(30)]
   })
+
+  private destroyed$ = new Subject<void>();
 
   constructor(
     private snackbarSrv: SnackbarsService,
     private fb: FormBuilder,
     private subjectsSrv: SubjectsService,
     public dialogRef: MatDialogRef<AddSubjectComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Subject,
-  ) {
+    @Inject(MAT_DIALOG_DATA) public data: iSubject,
+  ) {}
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   onNoClick(): void {
@@ -34,13 +40,17 @@ export class AddSubjectComponent {
 
   add(){
     if(this.addForm.valid){
-      const { socialReason, telephoneNumber, CFPIVA } = this.addForm.value;
-      this.subjectsSrv.add(socialReason!, toNumber(telephoneNumber!), CFPIVA!)
+      const subject = {
+        socialReason: this.addForm.value.socialReason,
+        telephoneNumber: this.addForm.value.telephoneNumber ? toNumber(this.addForm.value.telephoneNumber) : null,
+        CFPIVA: this.addForm.value.CFPIVA ? this.addForm.value.CFPIVA : null
+      };
+      this.subjectsSrv.add(subject)
         .pipe(
           catchError(err => throwError(err))
         )
         .subscribe(
-          (value: Subject) => {
+          (value: iSubject) => {
             this.snackbarSrv.openSnackBar("Soggetto aggiunto!", "green");
             this.dialogRef.close();
           },

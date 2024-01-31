@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject, Subject, catchError, combineLatest, map, of, switchMap, tap, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, ReplaySubject, catchError, combineLatest, of, switchMap, tap, throwError } from 'rxjs';
 import { User } from './auth.service';
 import { isNil, omitBy } from 'lodash';
 import { environment } from 'src/environments/environment';
-import { Installation } from './installations.service';
 import { admin } from 'src/utils/global';
 
 export interface UserFilter {
   username?: string | null;
-  idInstallation?: number | null;
+  installationId?: number | null;
 }
 
 export interface iUser {

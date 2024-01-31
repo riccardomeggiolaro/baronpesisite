@@ -3,5 +3,5 @@ import { pick } from 'lodash';
 import { EventFilter } from 'src/app/services/events.service';
 
 export const eventsFiltersResolver: ResolveFn<EventFilter> = (route, state) => {
-  return pick(route.queryParams, ['dtMin', 'dtMax', 'numberCard', 'plate', 'socialReason', 'idInstallation'])
+  return pick(route.queryParams, ['dtMin', 'dtMax', 'numberCard', 'plate', 'material', 'socialReason', 'idInstallation'])
 };

@@ -11,7 +11,7 @@ import { UserFilterComponent } from './components/users-page/user-filter/user-fi
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MyAccountComponent } from './components/my-account-page/my-account/my-account.component';
 import { LoginComponent } from './components/login/login.component';
-import { AddUserComponent } from './components/dialogs/add-user/add-user.component';
+import { AddUserComponent } from './components/users-page/add-user/add-user.component';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -45,7 +45,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { InstallationsComponent } from './components/installations-page/installations/installations.component';
 import { InstallationTableComponent } from './components/installations-page/installation-table/installation-table.component';
 import { InstallationFilterComponent } from './components/installations-page/installation-filter/installation-filter.component';
-import { AddInstallationComponent } from './components/dialogs/add-installation/add-installation.component';
+import { AddInstallationComponent } from './components/installations-page/add-installation/add-installation.component';
 import { YesNoPipe } from './pipes/yes-no.pipe';
 import { DatetimePipe } from './pipes/datetime.pipe';
 import { ConfirmComponent } from './components/dialogs/confirm/confirm.component';
@@ -53,12 +53,10 @@ import { ChangePasswordComponent } from './components/my-account-page/change-pas
 import { SubjectsComponent } from './components/subjects-page/subjects/subjects.component';
 import { SubjectTableComponent } from './components/subjects-page/subject-table/subject-table.component';
 import { SubjectFilterComponent } from './components/subjects-page/subject-filter/subject-filter.component';
-import { AddSubjectComponent } from './components/dialogs/add-subject/add-subject.component';
+import { AddSubjectComponent } from './components/subjects-page/add-subject/add-subject.component';
 import { CardsComponent } from './components/cards-page/cards/cards.component';
 import { CardTableComponent } from './components/cards-page/card-table/card-table.component';
 import { CardFilterComponent } from './components/cards-page/card-filter/card-filter.component';
-import { AddCardComponent } from './components/dialogs/add-card/add-card.component';
-import { AddEventComponent } from './components/dialogs/add-event/add-event.component';
 import { EventsComponent } from './components/events-page/events/events.component';
 import { EventTableComponent } from './components/events-page/event-table/event-table.component';
 import { EventFilterComponent } from './components/events-page/event-filter/event-filter.component';
@@ -67,13 +65,18 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { StringPipe } from './pipes/string.pipe';
 import { TypeUserPipe } from './pipes/type-user.pipe';
 import { IfSuperAdminDirective } from './directives/if-super-admin.directive';
-import { EditUserComponent } from './components/dialogs/edit-user/edit-user.component';
-import { EditInstallationComponent } from './components/dialogs/edit-installation/edit-installation.component';
-import { EditSubjectComponent } from './components/dialogs/edit-subject/edit-subject.component';
-import { EditCardComponent } from './components/dialogs/edit-card/edit-card.component';
+import { EditUserComponent } from './components/users-page/edit-user/edit-user.component';
+import { EditInstallationComponent } from './components/installations-page/edit-installation/edit-installation.component';
+import { EditSubjectComponent } from './components/subjects-page/edit-subject/edit-subject.component';
+import { EditCardComponent } from './components/cards-page/edit-card/edit-card.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
+import { MaterialsComponent } from './components/materials-page/materials/materials.component';
+import { MaterialTableComponent } from './components/materials-page/material-table/material-table.component';
+import { MaterialFilterComponent } from './components/materials-page/material-filter/material-filter.component';
+import { AddMaterialComponent } from './components/materials-page/add-material/add-material.component';
+import { EditMaterialComponent } from './components/materials-page/edit-material/edit-material.component';
 
 @NgModule({
   declarations: [
@@ -103,8 +106,6 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
     CardsComponent,
     CardTableComponent,
     CardFilterComponent,
-    AddCardComponent,
-    AddEventComponent,
     EventsComponent,
     EventTableComponent,
     EventFilterComponent,
@@ -114,7 +115,12 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
     EditUserComponent,
     EditInstallationComponent,
     EditSubjectComponent,
-    EditCardComponent
+    EditCardComponent,
+    MaterialsComponent,
+    MaterialTableComponent,
+    MaterialFilterComponent,
+    AddMaterialComponent,
+    EditMaterialComponent
   ],
   imports: [    
     MatBadgeModule,

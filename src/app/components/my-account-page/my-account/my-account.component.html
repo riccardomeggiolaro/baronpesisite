@@ -6,19 +6,19 @@
             </mat-card-header>
             <mat-card-content>
                 <h3>
-                    username: {{ user!.username }}
+                    <b>username:</b> {{ user!.username }}
                 </h3>
                 <h3>
-                    abilitato: {{ user!.able | yesNo }}
+                    <b>{{ user!.able ? 'Abilitato' : 'Disabilitato' }}</b>
                 </h3>
                 <h3>
-                    Id: {{ user!.id }}
+                    <b>matricola:</b> {{ user!.id }}
                 </h3>
                 <h3>
-                    livello accesso: {{ user!.accessLevel }}
+                    <b>livello accesso:</b> {{ user!.accessLevel }}
                 </h3>
                 <h3>
-                    tipo: {{ tipo }}
+                    <b>tipo:</b> {{ tipo }}
                 </h3>
             </mat-card-content>
         </mat-card>
@@ -29,13 +29,13 @@
             </mat-card-header>
             <mat-card-content>
                 <h3>
-                    codice: {{ user!.installationId.installationCode }}
+                    <b>codice:</b> {{ user!.installationId.installationCode }}
                 </h3>
                 <h3>
-                    descrizione: {{ user!.installationId.description }}
+                    <b>descrizione:</b> {{ user!.installationId.description }}
                 </h3>
                 <h3>
-                    imei: {{ user!.installationId.imei }}
+                    <b>imei:</b> {{ user!.installationId.imei }}
                 </h3>
             </mat-card-content>
         </mat-card>

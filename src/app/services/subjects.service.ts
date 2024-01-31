@@ -72,8 +72,9 @@ export class SubjectsService {
       )
   }
 
-  add(socialReason: string, telephoneNumber: number, CFPIVA: string){
-    return this.http.post<Subject>(`${this.url}/api/subject/add-subject`, {socialReason, telephoneNumber, CFPIVA})
+  add(subject: iSubject){
+    const data = omitBy(subject, isNil);
+    return this.http.post<Subject>(`${this.url}/api/subject/add-subject`, data)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("add"))
@@ -81,8 +82,10 @@ export class SubjectsService {
   }
 
   edit(id: number, subject: iSubject){
-    const data = omitBy(subject, isNil);
-    return this.http.patch<{message: string}>(`${this.url}/api/subject/${id}`, data)
+    if(subject.socialReason === null){
+      delete subject.socialReason;
+    }
+    return this.http.patch<{message: string}>(`${this.url}/api/subject/${id}`, subject)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("change"))

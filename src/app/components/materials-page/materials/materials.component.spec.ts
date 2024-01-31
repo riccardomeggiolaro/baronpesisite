@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddEventComponent } from './add-event.component';
+import { MaterialsComponent } from './materials.component';
 
-describe('AddEventComponent', () => {
-  let component: AddEventComponent;
-  let fixture: ComponentFixture<AddEventComponent>;
+describe('MaterialsComponent', () => {
+  let component: MaterialsComponent;
+  let fixture: ComponentFixture<MaterialsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddEventComponent]
+      declarations: [MaterialsComponent]
     });
-    fixture = TestBed.createComponent(AddEventComponent);
+    fixture = TestBed.createComponent(MaterialsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

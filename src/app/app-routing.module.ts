@@ -21,6 +21,9 @@ import { cardsResolver } from './resolvers/cards-resolvers/cards.resolver';
 import { EventsComponent } from './components/events-page/events/events.component';
 import { eventsFiltersResolver } from './resolvers/events-resolvers/events-filters.resolver';
 import { eventsResolver } from './resolvers/events-resolvers/events.resolver';
+import { MaterialsComponent } from './components/materials-page/materials/materials.component';
+import { materialsFilterResolver } from './resolvers/materials-resolver/materials-filter.resolver';
+import { materialsResolver } from './resolvers/materials-resolver/materials.resolver';
 
 export const routes: Routes = [
   {
@@ -60,6 +63,16 @@ export const routes: Routes = [
     resolve: {
       filters: subjectsFilterResolver,
       subjects: subjectsResolver
+    },
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange'
+  },
+  {
+    path: 'materials',
+    canActivate: [authGuard],
+    component: MaterialsComponent,
+    resolve: {
+      filters: materialsFilterResolver,
+      subjects: materialsResolver
     },
     runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   },

@@ -4,9 +4,7 @@
       <form [formGroup]="editForm">
         <mat-form-field>
           <mat-label>Ragione Sociale</mat-label>
-          <input matInput type="text" formControlName="socialReason" minlength="8" [maxlength]="50">
-          <mat-hint align="start">Min 8 caratteri</mat-hint>
-          <mat-hint align="end">{{(editForm.value.socialReason?.length! || 0) < 8 ? ((8 - (editForm.value.socialReason?.length || 0)) + " mancanti") : ""}}</mat-hint>
+          <input matInput type="text" formControlName="socialReason" [maxlength]="50">
         </mat-form-field>
         <mat-form-field>
           <mat-label>Numero Di Telefono</mat-label>
@@ -14,9 +12,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>CFPIVA</mat-label>
-            <input matInput type="text" formControlName="CFPIVA" minlength="15" [maxlength]="30">
-            <mat-hint align="start">Min 15 caratteri</mat-hint>
-            <mat-hint align="end">{{(editForm.value.CFPIVA?.length! || 0) < 15 ? ((15 - (editForm.value.CFPIVA?.length || 0)) + " mancanti") : ""}}</mat-hint>
+            <input matInput type="text" formControlName="CFPIVA" [maxlength]="30">
         </mat-form-field>
       </form>
     </div>

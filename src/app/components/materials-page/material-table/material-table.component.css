@@ -1,0 +1,26 @@
+table {
+    width: 100%;
+    overflow: auto
+}
+.actions{
+    display: flex;
+    flex-direction: row;
+}
+button{
+    margin: 3px;
+}
+mat-card-footer{
+    display: flex; 
+    flex-wrap: wrap;
+    padding-bottom: 5px;
+    justify-content: flex-end;
+}
+mat-paginator{
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50px;
+}
+.div{
+    position: fixed; 
+    margin: auto;
+}

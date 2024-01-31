@@ -36,7 +36,7 @@ export class EditInstallationComponent {
   edit(){
     if(this.editForm.valid){
       const { installationCode, description, imei } = this.editForm.value;
-      this.installationsSrv.edit(this.data.id, {installationCode: (installationCode === this.data.installationCode ? null : installationCode!), description: description!, imei: imei!})
+      this.installationsSrv.edit(this.data.id, {installationCode: (installationCode === this.data.installationCode ? null : installationCode!), description: (description === this.data.description ? null : description), imei: (imei === this.data.imei ? null : imei)})
         .pipe(
           catchError(err => throwError(err))
         )

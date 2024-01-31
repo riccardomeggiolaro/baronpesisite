@@ -19,11 +19,11 @@
         <ng-container matColumnDef="actions" stickyEnd>
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row">
-                <div class="actions">
+                <div class="actions" *appIfAdmin>
                     <button mat-mini-fab color="primary" (click)="edit(row)" aria-label="Example icon button with a menu icon">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-mini-fab color="warn" (click)="delete(row.id)" aria-label="Example icon button with a menu icon" *appIfAdmin>
+                    <button mat-mini-fab color="warn" (click)="delete(row.id, row.socialReason)" aria-label="Example icon button with a menu icon">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>

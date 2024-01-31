@@ -21,17 +21,17 @@
             <td mat-cell *matCellDef="let row"> {{row.plate}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="subject.socialReason">
+        <ng-container matColumnDef="materialId.description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Materiale </th>
+            <td mat-cell *matCellDef="let row"> {{row.materialId?.description }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="subjectId.socialReason">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Ragione Sociale </th>
             <td mat-cell *matCellDef="let row"> {{row.subjectId?.socialReason}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="installation.installationCode">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Codice Installazione </th>
-            <td mat-cell *matCellDef="let row"> {{row.installationId?.installationCode }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="installation.description">
+        <ng-container matColumnDef="installationId.description">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrizione Installazione </th>
             <td mat-cell *matCellDef="let row"> {{row.installationId?.description}} </td>
         </ng-container>
@@ -42,9 +42,6 @@
                 <div class="actions">
                     <button mat-mini-fab color="primary" (click)="edit(row)" aria-label="Example icon button with a menu icon">
                         <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-mini-fab color="warn" (click)="delete(row.id)" aria-label="Example icon button with a menu icon" *appIfSuperAdmin>
-                        <mat-icon>delete</mat-icon>
                     </button>
                 </div>
             </td>
@@ -60,6 +57,7 @@
             <td class="mat-cell" colspan="4">Nessun dato trovato per i filtri 
                 {{ filter?.numberCard | string }}
                 {{ filter?.plate | string }}
+                {{ filter?.materialDescription | string }}
                 {{ filter?.socialReason | string }}
                 {{ filter?.installationId | string }}
             </td>

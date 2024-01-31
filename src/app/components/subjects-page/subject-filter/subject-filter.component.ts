@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { omitBy } from 'lodash';
+import { omitBy, toNumber } from 'lodash';
 import { Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 import { SubjectFilter, SubjectsService } from 'src/app/services/subjects.service';
-import { AddSubjectComponent } from '../../dialogs/add-subject/add-subject.component';
+import { AddSubjectComponent } from '../add-subject/add-subject.component';
 import { hasValueInOptionalFields } from 'src/utils/has-value';
+import { InstallationsService } from 'src/app/services/installations.service';
 
 @Component({
   selector: 'app-subject-filter',
@@ -17,19 +18,27 @@ export class SubjectFilterComponent {
   filtersForm = this.fb.group({
     socialReason: this.fb.control<string|null>(''),
     telephoneNumber: this.fb.control<number|null>(null),
-    CFPIVA: this.fb.control<string|null>('')
+    CFPIVA: this.fb.control<string|null>(''),
+    installationId: this.fb.control<number|null>(null)
   });
+
+  installations$ =this.installationsSrv.installations$;
 
   private destroyed$ = new Subject<void>()
 
   constructor(private fb: FormBuilder,
               public dialog: MatDialog,
               private subjectsSrv: SubjectsService,
-              private router: Router) {}
+              private router: Router,
+              private installationsSrv: InstallationsService) {}
 
   ngOnInit(): void {
     this.subjectsSrv.filters$.subscribe(value => {
-      this.filtersForm.patchValue(value || {}, {emitEvent: false});
+      this.filtersForm.patchValue(value || {socialReason: '', telephoneNumber: null, CFPIVA: '', installationId: null}, {emitEvent: false});
+      if(this.filtersForm.value.installationId){
+        let installationId = toNumber(this.filtersForm.value.installationId);
+        this.filtersForm.get('installationId')?.setValue(installationId);
+      }
       this.filtersForm.markAsPristine();
     })
     this.filtersForm.valueChanges
@@ -51,7 +60,7 @@ export class SubjectFilterComponent {
   }
 
   deleteFilters(){
-    this.filtersForm.patchValue({socialReason: '', telephoneNumber: null, CFPIVA: ''})
+    this.filtersForm.patchValue({socialReason: '', telephoneNumber: null, CFPIVA: '', installationId: null})
   }
 
   openDialog(): void {

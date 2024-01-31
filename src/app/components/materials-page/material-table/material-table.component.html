@@ -1,0 +1,44 @@
+<mat-card-content>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table-materials">
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrizione </th>
+            <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row">
+                <div class="actions" *appIfAdmin>
+                    <button mat-mini-fab color="primary" (click)="edit(row)" aria-label="Example icon button with a menu icon">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" (click)="delete(row.id, row.description)" aria-label="Example icon button with a menu icon">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
+
+        <div class="div">
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </div>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">Nessun dato trovato per i filtri 
+                {{ filter?.description | string }}
+            </td>
+        </tr>
+    </table>
+</mat-card-content>
+<br>
+<mat-card-footer>
+    <mat-paginator 
+        [length]="dataSource.data.length" 
+        showFirstLastButtons 
+        [pageSizeOptions]="[5, 10, 25, 100]" 
+        aria-label="Select page of users">
+    </mat-paginator>
+</mat-card-footer>

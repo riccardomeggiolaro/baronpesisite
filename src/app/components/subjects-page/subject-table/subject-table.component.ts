@@ -6,7 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subject as iSubject, SubjectFilter, SubjectsService } from 'src/app/services/subjects.service';
 import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
-import { EditSubjectComponent } from '../../dialogs/edit-subject/edit-subject.component';
+import { EditSubjectComponent } from '../edit-subject/edit-subject.component';
+import { get } from 'lodash';
 
 @Component({
   selector: 'app-subject-table',
@@ -26,6 +27,7 @@ export class SubjectTableComponent implements OnDestroy {
   constructor(private subjectsSrv: SubjectsService,
               private dialog: MatDialog) {
       this.dataSource = new MatTableDataSource();
+      this.dataSource.sortingDataAccessor = get; 
       this.dataSource.sort = this.sort;
     }
 
@@ -59,9 +61,9 @@ export class SubjectTableComponent implements OnDestroy {
     this.destroyed$.complete();
   }
 
-  delete(id: number){
+  delete(id: number, socialReason: string){
     const dialogRef = this.dialog.open(ConfirmComponent, {
-      data: {action: `Eliminare questo subject`},
+      data: {action: `eliminare il soggetto "${socialReason}"`},
     });
 
     dialogRef.afterClosed().subscribe(result => {

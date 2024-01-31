@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 import { InstallationsService } from 'src/app/services/installations.service';
-import { AddInstallationComponent } from '../../dialogs/add-installation/add-installation.component';
+import { AddInstallationComponent } from '../add-installation/add-installation.component';
 import { Router } from '@angular/router';
 import { omitBy } from 'lodash';
 import { hasValueInOptionalFields } from 'src/utils/has-value';

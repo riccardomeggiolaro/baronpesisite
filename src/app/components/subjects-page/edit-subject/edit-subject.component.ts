@@ -24,8 +24,8 @@ export class EditSubjectComponent {
   ) {
     this.editForm = this.fb.group({
       socialReason: [data.socialReason, {validators: Validators.required, min: 8, max: 50}],
-      telephoneNumber: [data.telephoneNumber, {validators: Validators.required, min: 6, max: 11}],
-      CFPIVA: [data.CFPIVA, {validators: Validators.required, min: 15, max: 30}],
+      telephoneNumber: [data.telephoneNumber, Validators.maxLength(11)],
+      CFPIVA: [data.CFPIVA, Validators.maxLength(30)],
     })
   }
 
@@ -35,8 +35,12 @@ export class EditSubjectComponent {
 
   edit(){
     if(this.editForm.valid){
-      const { socialReason, telephoneNumber, CFPIVA } = this.editForm.value;
-      this.subjectsSrv.edit(this.data.id, {socialReason: (socialReason! === this.data.socialReason ? null : socialReason), telephoneNumber: toNumber(telephoneNumber!), CFPIVA: CFPIVA!})
+      const subject = {
+        socialReason: this.editForm.value.socialReason === this.data.socialReason ? null : this.editForm.value.socialReason,
+        telephoneNumber: this.editForm.value.telephoneNumber ? toNumber(this.editForm.value.telephoneNumber) : null,
+        CFPIVA: this.editForm.value.CFPIVA ? this.editForm.value.CFPIVA : null
+      };
+      this.subjectsSrv.edit(this.data.id, subject)
         .pipe(
           catchError(err => throwError(err))
         )

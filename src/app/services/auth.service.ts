@@ -7,6 +7,7 @@ import { Location } from "@angular/common";
 import { Installation } from "./installations.service";
 import { environment } from "src/environments/environment";
 import * as moment from "moment";
+import { admin } from "src/utils/global";
 
 export interface User {
   id: number;
@@ -75,6 +76,15 @@ export class AuthService {
 
   getUser(){
     return this._currentUser$.value;
+  }
+
+  isAdmin(){
+    return this.currentUser$.pipe(
+      tap(res => {
+        if(res?.accessLevel! >= admin) return true;
+        return false;
+      })
+    )
   }
 
   lastAccess(status: "offline" | "online"){

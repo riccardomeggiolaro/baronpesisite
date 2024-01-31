@@ -1,0 +1,47 @@
+<div class="container-dialog">
+    <h1 mat-dialog-title>Modifica carta</h1>
+    <div mat-dialog-content>
+      <form [formGroup]="editForm">
+        <mat-form-field>
+          <mat-label>Veicolo</mat-label>
+          <input matInput type="text" formControlName="vehicle" [maxlength]="20">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Targa</mat-label>
+            <input matInput type="text" formControlName="plate" [maxlength]="20">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Materiale</mat-label>
+          <mat-select formControlName="materialId">
+            <mat-option [value]="null">
+              <div style="margin: 10px auto 10px auto;">
+              </div>                
+            </mat-option>
+            <mat-option *ngFor="let material of materials$ | async" [value]="material.id">
+              <div style="margin: 10px auto 10px auto;">
+                {{ material.description }}
+              </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Ragione Sociale</mat-label>
+            <mat-select formControlName="idSubject">
+              <mat-option [value]="null">
+                <div style="margin: 10px auto 10px auto;">
+                </div>                
+              </mat-option>
+              <mat-option *ngFor="let subject of subjects$ | async" [value]="subject.id">
+                <div style="margin: 10px auto 10px auto;">
+                  {{ subject.socialReason }}
+                </div>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </form>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button (click)="onNoClick()" color="warn">Esci</button>
+      <button mat-raised-button (click)="edit()" color="primary" [disabled]="!editForm.valid">Salva</button>
+    </div>  
+  </div>

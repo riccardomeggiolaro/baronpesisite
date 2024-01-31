@@ -4,5 +4,5 @@ import { pick } from 'lodash';
 
 export const usersFilterResolver: ResolveFn<UserFilter> = (route, state) => {
   console.log("Pick users filters")
-  return pick(route.queryParams, ['username', 'idInstallation'])
+  return pick(route.queryParams, ['username', 'installationId'])
 };

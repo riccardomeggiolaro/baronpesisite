@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 import { UserFilter, UsersService } from 'src/app/services/users.service';
-import { AddUserComponent } from '../../dialogs/add-user/add-user.component';
+import { AddUserComponent } from '../add-user/add-user.component';
 import { omitBy, toNumber } from 'lodash';
 import { Router } from '@angular/router';
 import { InstallationsService } from 'src/app/services/installations.service';
@@ -17,7 +17,7 @@ import { hasValueInOptionalFields } from 'src/utils/has-value';
 export class UserFilterComponent {
   filtersForm = this.fb.group({
     username: this.fb.control<string|null>(''),
-    idInstallation: this.fb.control<number|null>(null)
+    installationId: this.fb.control<number|null>(null)
   });
 
   installations$ =this.installationsSrv.installations$;
@@ -32,10 +32,10 @@ export class UserFilterComponent {
 
   ngOnInit(): void {
     this.usersSrv.filters$.subscribe(value => {
-      this.filtersForm.patchValue(value || {username: '', idInstallation: null}, {emitEvent: false});
-      if(this.filtersForm.value.idInstallation){
-        let idInstallation = toNumber(this.filtersForm.value.idInstallation);
-        this.filtersForm.get('idInstallation')?.setValue(idInstallation);
+      this.filtersForm.patchValue(value || {username: '', installationId: null}, {emitEvent: false});
+      if(this.filtersForm.value.installationId){
+        let installationId = toNumber(this.filtersForm.value.installationId);
+        this.filtersForm.get('installationId')?.setValue(installationId);
       }
       this.filtersForm.markAsPristine();
     })
@@ -58,7 +58,7 @@ export class UserFilterComponent {
   }
 
   deleteFilters(){
-    this.filtersForm.patchValue({username: '', idInstallation: null})
+    this.filtersForm.patchValue({username: '', installationId: null})
   }
 
   openDialog(): void {

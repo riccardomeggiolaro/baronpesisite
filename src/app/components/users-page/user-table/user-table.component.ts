@@ -8,7 +8,7 @@ import { AuthService, User } from 'src/app/services/auth.service';
 import { UserFilter, UsersService } from 'src/app/services/users.service';
 import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
 import { get } from 'lodash';
-import { EditUserComponent } from '../../dialogs/edit-user/edit-user.component';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 
 @Component({
   selector: 'app-user-table',
@@ -16,7 +16,7 @@ import { EditUserComponent } from '../../dialogs/edit-user/edit-user.component';
   styleUrls: ['./user-table.component.css']
 })
 export class UserTableComponent implements AfterViewInit, OnInit, OnDestroy {
-  displayedColumns: string[] = ['username', 'able', 'accessLevel', 'lastAccess', 'installation.installationCode', 'installation.description', 'actions'];
+  displayedColumns: string[] = ['username', 'able', 'accessLevel', 'lastAccess', 'installationId.description', 'actions'];
   dataSource: MatTableDataSource<User>;
   filter: UserFilter | null | undefined;
   private destroyed$ = new Subject<void>();
@@ -66,7 +66,7 @@ export class UserTableComponent implements AfterViewInit, OnInit, OnDestroy {
 
   delete(username: string){
     const dialogRef = this.dialog.open(ConfirmComponent, {
-      data: {action: `Eliminare ${username}`},
+      data: {action: `eliminare l'utente "${username}"`},
     });
 
     dialogRef.afterClosed().subscribe(result => {

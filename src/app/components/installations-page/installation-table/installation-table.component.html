@@ -23,7 +23,7 @@
                     <button mat-mini-fab color="primary" (click)="edit(row)" aria-label="Example icon button with a menu icon" *appIfSuperAdmin>
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-mini-fab color="warn" (click)="delete(row.id)" aria-label="Example icon button with a menu icon" *appIfSuperAdmin>
+                    <button mat-mini-fab color="warn" (click)="delete(row.id, row.description)" aria-label="Example icon button with a menu icon" *appIfSuperAdmin>
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>

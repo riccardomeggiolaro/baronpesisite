@@ -6,7 +6,6 @@ import { omitBy, toNumber } from 'lodash';
 import { Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 import { CardFilter, CardsService } from 'src/app/services/cards.service';
 import { InstallationsService } from 'src/app/services/installations.service';
-import { AddCardComponent } from '../../dialogs/add-card/add-card.component';
 import { hasValueInOptionalFields } from 'src/utils/has-value';
 
 @Component({
@@ -18,6 +17,7 @@ export class CardFilterComponent {
   filtersForm = this.fb.group({
     numberCard: this.fb.control<string|null>(''),
     plate: this.fb.control<string|null>(''),
+    materialDescription: this.fb.control<string|null>(''),
     socialReason: this.fb.control<string|null>(''),
     idInstallation: this.fb.control<number|null>(null)
   });
@@ -34,7 +34,7 @@ export class CardFilterComponent {
 
   ngOnInit(): void {
     this.cardsSrv.filters$.subscribe(value => {
-      this.filtersForm.patchValue(value || {numberCard: '', plate: '', socialReason: '', idInstallation: null}, {emitEvent: false});
+      this.filtersForm.patchValue(value || {numberCard: '', plate: '', materialDescription: '', socialReason: '', idInstallation: null}, {emitEvent: false});
       if(this.filtersForm.value.idInstallation){
         let idInstallation = toNumber(this.filtersForm.value.idInstallation);
         this.filtersForm.get('idInstallation')?.setValue(idInstallation);
@@ -60,14 +60,8 @@ export class CardFilterComponent {
   }
 
   deleteFilters(){
-    this.filtersForm.patchValue({numberCard: '', plate: '', socialReason: '', idInstallation: null})
+    this.filtersForm.patchValue({numberCard: '', plate: '', materialDescription: '', socialReason: '', idInstallation: null})
   }
-
-  openDialog(): void {
-    this.dialog.open(AddCardComponent, {
-      data: {username: null}
-    });
-  }        
   
   hasValue() {
     if (hasValueInOptionalFields(this.filtersForm)) {

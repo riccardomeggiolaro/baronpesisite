@@ -5,10 +5,12 @@ import { Subject } from './subjects.service';
 import { Installation } from './installations.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Material } from './materials.service';
 
 export interface CardFilter {
   numberCard?: string | null;
   plate?: string | null;
+  materialDescription?: string | null;
   socialReason?: string | null;
   installationId?: number | null;
 }
@@ -17,21 +19,21 @@ export interface Card {
   id: number;
   cardCode: string;
   numberCard: string;
-  vehicle: string;
-  plate: string;
-  tare: number;
-  subjectId?: Subject;
-  installationId?: Installation;
-}
-
-export interface iCard {
-  cardCode?: string | null;
-  numberCard?: string | null;
   vehicle?: string | null;
   plate?: string | null;
+  materialId?: Material | null;
   tare?: number | null;
+  subjectId?: Subject | null;
+  installationId: Installation;
+}
+
+export interface editCard {
+  vehicle?: string | null;
+  plate?: string | null;
+  materialId?: number | null;
+  tare?: number | null;
+  note?: string | null;
   subjectId?: number | null;
-  installationId?: number | null;
 }
 
 @Injectable({
@@ -75,25 +77,8 @@ export class CardsService {
     this._actions$.next("filter");
   }
 
-  delete(id: number) {
-    return this.http.delete<{message: string}>(`${this.url}/api/card/${id}`)
-      .pipe(
-        tap(res => this._requestUpdate$.next()),
-        tap(res => this._actions$.next("delete"))
-      )
-  }
-
-  add(cardCode: string, numberCard: string, vehicle: string, plate: string, idSubject: number, idInstallation: number){
-    return this.http.post<Card>(`${this.url}/api/card/add-card`, {cardCode, numberCard, vehicle, plate, idSubject, idInstallation})
-      .pipe(
-        tap(res => this._requestUpdate$.next()),
-        tap(res => this._actions$.next("add"))
-      )
-  }
-
-  edit(id: number, card: iCard){
-    const data = omitBy(card, isNil);
-    return this.http.patch<{message: string}>(`${this.url}/api/card/${id}`, data)
+  edit(id: number, card: editCard){
+    return this.http.patch<{message: string}>(`${this.url}/api/card/${id}`, card)
       .pipe(
         tap(res => this._requestUpdate$.next())
       )

@@ -7,15 +7,15 @@ import { Card, CardFilter, CardsService } from 'src/app/services/cards.service';
 import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
 import { catchError, takeUntil, throwError, Subject } from 'rxjs';
 import { get } from 'lodash';
-import { EditCardComponent } from '../../dialogs/edit-card/edit-card.component';
+import { EditCardComponent } from '../edit-card/edit-card.component';
 
 export interface iCard {
   cardCode: string;
   vehicle: string;
   plate: string;
   tare: number;
+  material: string;
   socialReason: string;
-  installationCode: string;
   description: string;
 }
 
@@ -25,7 +25,7 @@ export interface iCard {
   styleUrls: ['./card-table.component.css']
 })
 export class CardTableComponent implements OnDestroy {
-  displayedColumns: string[] = ['numberCard', 'cardCode', 'vehicle', 'plate', 'subject.socialReason', 'installation.installationCode', 'installation.description', 'actions'];
+  displayedColumns: string[] = ['numberCard', 'cardCode', 'vehicle', 'plate', 'materialId.description', 'subjectId.socialReason', 'installationId.description', 'actions'];
   dataSource: MatTableDataSource<Card>;
   filter: CardFilter | null | undefined;
 
@@ -69,22 +69,6 @@ export class CardTableComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
-  }
-
-  delete(id: number){
-    const dialogRef = this.dialog.open(ConfirmComponent, {
-      data: {action: `Eliminare questo evento`},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.cardSrv.delete(id)
-        .pipe(
-          catchError(err => throwError(err))
-        )
-        .subscribe()
-      }
-    });
   }
 
   edit(card: Card){

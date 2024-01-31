@@ -11,6 +11,7 @@ export interface EventFilter {
   dtMax?: Date | null;
   numberCard?: string | null;
   plate?: string | null;
+  material?: string | null;
   socialReason?: string | null;
   idInstallation?: number | null;
 }
