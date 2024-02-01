@@ -27,7 +27,7 @@ export interface Event {
   weight2: number;
   pid2: string;
   netWeight: number;
-  material: string;
+  materialDescription: string;
   cardCode?: Card | string | null;
   rowId: number;
 }
@@ -49,7 +49,6 @@ export class EventsService {
     this.filters$
   ]).pipe(
     catchError(err => {
-      console.log(err);
       throwError(err);
       return []
     }),
@@ -58,7 +57,7 @@ export class EventsService {
         const q = omitBy(filters, isNil);
         return this.http.get<Event[]>(`${this.url}/api/event/list`, {params: q})
           .pipe(
-            catchError(err => {console.log(err); return of([])})
+            catchError(err => of([]))
           )
       }
     )
@@ -100,14 +99,6 @@ export class EventsService {
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("delete"))
-      )
-  }
-
-  add(dt_create: Date, progressive: number, note1: string, note2: string, weight1: number, pid1: string, weight2: number, pid2: string, netWeight: number, material: string, idCard: number, idInstallation: number){
-    return this.http.post<Event>(`${this.url}/api/event/add-event`, {dt_create, progressive, note1, note2, weight1, pid1, weight2, pid2, netWeight, material, idCard, idInstallation})
-      .pipe(
-        tap(res => this._requestUpdate$.next()),
-        tap(res => this._actions$.next("add"))
       )
   }
 }

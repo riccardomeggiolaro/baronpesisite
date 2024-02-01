@@ -19,7 +19,7 @@ export class CardFilterComponent {
     plate: this.fb.control<string|null>(''),
     materialDescription: this.fb.control<string|null>(''),
     socialReason: this.fb.control<string|null>(''),
-    idInstallation: this.fb.control<number|null>(null)
+    installationId: this.fb.control<number|null>(null)
   });
 
   installations$ =this.installationsSrv.installations$;
@@ -34,10 +34,10 @@ export class CardFilterComponent {
 
   ngOnInit(): void {
     this.cardsSrv.filters$.subscribe(value => {
-      this.filtersForm.patchValue(value || {numberCard: '', plate: '', materialDescription: '', socialReason: '', idInstallation: null}, {emitEvent: false});
-      if(this.filtersForm.value.idInstallation){
-        let idInstallation = toNumber(this.filtersForm.value.idInstallation);
-        this.filtersForm.get('idInstallation')?.setValue(idInstallation);
+      this.filtersForm.patchValue(value || {numberCard: '', plate: '', materialDescription: '', socialReason: '', installationId: null}, {emitEvent: false});
+      if(this.filtersForm.value.installationId){
+        let installationId = toNumber(this.filtersForm.value.installationId);
+        this.filtersForm.get('installationId')?.setValue(installationId);
       }
       this.filtersForm.markAsPristine();
     })
@@ -60,7 +60,7 @@ export class CardFilterComponent {
   }
 
   deleteFilters(){
-    this.filtersForm.patchValue({numberCard: '', plate: '', materialDescription: '', socialReason: '', idInstallation: null})
+    this.filtersForm.patchValue({numberCard: '', plate: '', materialDescription: '', socialReason: '', installationId: null})
   }
   
   hasValue() {

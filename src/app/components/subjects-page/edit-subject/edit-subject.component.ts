@@ -53,7 +53,6 @@ export class EditSubjectComponent {
             let message = "";
             if(error.status === 400) message = error.error.message;
             else message = "Errore generico, per favore riprova più tardi";
-            console.log(error);
             this.snackbarSrv.openSnackBar(message, "red");
           }
         )

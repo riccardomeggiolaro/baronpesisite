@@ -4,8 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Card, CardFilter, CardsService } from 'src/app/services/cards.service';
-import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
-import { catchError, takeUntil, throwError, Subject } from 'rxjs';
+import { takeUntil, Subject } from 'rxjs';
 import { get } from 'lodash';
 import { EditCardComponent } from '../edit-card/edit-card.component';
 

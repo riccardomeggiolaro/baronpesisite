@@ -34,7 +34,6 @@ export class MaterialsService {
     this.filters$
   ]).pipe(
     catchError(err => {
-      console.log(err);
       throwError(err);
       return []
     }),

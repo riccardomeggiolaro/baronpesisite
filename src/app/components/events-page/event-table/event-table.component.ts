@@ -64,7 +64,6 @@ export class EventTableComponent implements OnDestroy {
       .subscribe((events) => {
         this.dataSource.data = events;
         this.dataSource._updateChangeSubscription();
-        console.log(events)
       })   
     this.eventsSrv.filters$.subscribe((value) => {
       this.filter = value;

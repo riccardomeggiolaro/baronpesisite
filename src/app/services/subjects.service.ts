@@ -40,7 +40,6 @@ export class SubjectsService {
     this.filters$
   ]).pipe(
     catchError(err => {
-      console.log(err);
       throwError(err);
       return []
     }),

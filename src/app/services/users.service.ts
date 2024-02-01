@@ -37,13 +37,11 @@ export class UsersService {
     this.filters$
   ]).pipe(
     catchError(err => {
-      console.log(err);
       throwError(err);
       return []
     }),
     switchMap(
       ([_, filters]) => {
-        console.log("Ricerca")
         const q = omitBy(filters, isNil);
         return this.http.get<User[]>(`${this.url}/api/user/list`, {params: q})
           .pipe(

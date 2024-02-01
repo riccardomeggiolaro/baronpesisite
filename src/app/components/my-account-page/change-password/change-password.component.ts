@@ -56,7 +56,6 @@ export class ChangePasswordComponent {
       this.authSrv.changePassword(password!, newPassword!, repeatPassword!)
         .pipe(
           catchError(err => {
-            console.log(err)
             if(err.status === 429) this.snackBar.openSnackBar(err.error, 'red')
             else this.snackBar.openSnackBar(err.error.message, 'red');
             return throwError(() => err);   
@@ -68,8 +67,6 @@ export class ChangePasswordComponent {
           this.newPasswordForm.value.newPassword = ''
           this.repeatPasswordForm.value.repeatPassword = ''
         });
-    }else{
-      console.log("Error")
     }
   }
 }

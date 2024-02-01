@@ -67,7 +67,6 @@ export class AddUserComponent implements OnInit {
       let _idInstallation = null;
       const { username, password, accessLevel, idInstallation } = this.addForm.value;
       if(idInstallation) _idInstallation = toInteger(idInstallation);
-      console.log(_idInstallation);
       this.usersSrv.add(username!, password!, toInteger(accessLevel!), _idInstallation)
         .pipe(
           catchError(err => throwError(err))
@@ -81,7 +80,6 @@ export class AddUserComponent implements OnInit {
             let message = "";
             if(error.status === 400) message = error.error.message;
             else message = "Errore generico, per favore riprova più tardi";
-            console.log(error);
             this.snackbarsSrv.openSnackBar(message, "red");
           }
         )
@@ -98,7 +96,7 @@ export class AddUserComponent implements OnInit {
   }
 
   toggleRequired(accessLevel: number) {
-    const myFieldControl = this.addForm.get('idInstallation');
+    const myFieldControl = this.addForm.get('installationId');
 
     if (myFieldControl) {
       if (accessLevel >= admin) {

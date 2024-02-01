@@ -75,7 +75,6 @@ export class EditUserComponent {
             let message = "";
             if(error.status === 400) message = error.error.message;
             else message = "Errore generico, per favore riprova più tardi";
-            console.log(error);
             this.snackbarsSrv.openSnackBar(message, "red");
           }
         )
@@ -92,7 +91,7 @@ export class EditUserComponent {
   }
 
   toggleRequired(accessLevel: number) {
-    const myFieldControl = this.editForm.get('idInstallation');
+    const myFieldControl = this.editForm.get('installationId');
 
     if (myFieldControl) {
       if (accessLevel >= admin) {
