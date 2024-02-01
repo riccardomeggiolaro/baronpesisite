@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject as iSubject, SubjectFilter, SubjectsService } from 'src/app/services/subjects.service';
-import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
+import { ConfirmComponent } from '../../confirm/confirm.component';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { EditSubjectComponent } from '../edit-subject/edit-subject.component';
 import { get } from 'lodash';

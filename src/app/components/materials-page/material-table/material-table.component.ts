@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { get } from 'lodash';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { MaterialFilter, MaterialsService, Material as iMaterial } from 'src/app/services/materials.service';
-import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
+import { ConfirmComponent } from '../../confirm/confirm.component';
 import { EditMaterialComponent } from '../edit-material/edit-material.component';
 
 @Component({

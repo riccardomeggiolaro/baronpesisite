@@ -48,7 +48,7 @@ import { InstallationFilterComponent } from './components/installations-page/ins
 import { AddInstallationComponent } from './components/installations-page/add-installation/add-installation.component';
 import { YesNoPipe } from './pipes/yes-no.pipe';
 import { DatetimePipe } from './pipes/datetime.pipe';
-import { ConfirmComponent } from './components/dialogs/confirm/confirm.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ChangePasswordComponent } from './components/my-account-page/change-password/change-password.component';
 import { SubjectsComponent } from './components/subjects-page/subjects/subjects.component';
 import { SubjectTableComponent } from './components/subjects-page/subject-table/subject-table.component';

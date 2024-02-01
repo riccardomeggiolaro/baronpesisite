@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { AuthService, User } from 'src/app/services/auth.service';
 import { UserFilter, UsersService } from 'src/app/services/users.service';
-import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
+import { ConfirmComponent } from '../../confirm/confirm.component';
 import { get } from 'lodash';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 

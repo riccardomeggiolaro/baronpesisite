@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { Installation, InstallationFilter, InstallationsService } from 'src/app/services/installations.service';
-import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
+import { ConfirmComponent } from '../../confirm/confirm.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EditInstallationComponent } from '../edit-installation/edit-installation.component';
 

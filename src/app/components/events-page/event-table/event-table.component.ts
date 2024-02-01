@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Event, EventFilter, EventsService } from 'src/app/services/events.service';
-import { ConfirmComponent } from '../../dialogs/confirm/confirm.component';
+import { ConfirmComponent } from '../../confirm/confirm.component';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { get } from 'lodash';
@@ -38,7 +38,7 @@ interface PeriodicElement {
   ],
 })
 export class EventTableComponent implements OnDestroy {
-  displayedColumns: string[] = ['dt_create', "numberCard", "plate", "socialReason", 'pid1_pid2', 'weight1', 'weight2', 'netWeight', 'material', 'installationId.description', 'actions'];
+  displayedColumns: string[] = ["progressive", 'dt_create', "numberCard", "vehicle", "plate", "socialReason", 'pid1_pid2', 'weight1', 'weight2', 'netWeight', 'material', 'installationId.description', 'actions'];
   dataSource: MatTableDataSource<Event>;
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement!: PeriodicElement | null;

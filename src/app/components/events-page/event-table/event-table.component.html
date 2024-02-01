@@ -5,6 +5,11 @@
     class="mat-elevation-z8 table-events"
     id="table">
 
+    <ng-container matColumnDef="progressive">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Progr. </th>
+        <td mat-cell *matCellDef="let row"> {{row.progressive}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="dt_create">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
         <td mat-cell *matCellDef="let row"> {{row.dt_create | datetime}} </td>
@@ -13,6 +18,11 @@
     <ng-container matColumnDef="numberCard">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero Carta </th>
         <td mat-cell *matCellDef="let row"> {{row.numberCard ? row.numberCard : ""}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="vehicle">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Veicolo </th>
+        <td mat-cell *matCellDef="let row"> {{row.vehicle}} </td>
     </ng-container>
 
     <ng-container matColumnDef="plate">
@@ -51,7 +61,7 @@
     </ng-container>
 
     <ng-container matColumnDef="installationId.description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrizione Installazione </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Installazione </th>
         <td mat-cell *matCellDef="let row"> {{row.installationId?.description}} </td>
     </ng-container>
 
@@ -81,17 +91,11 @@
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                 <div class="example-element-description">
                     <ul>
-                        <div> <b>Codice Carta:</b> {{element.cardCode?.cardCode}} </div>
-                        <br>
-                        <div> <b>Veicolo:</b> {{element.cardCode?.vehicle}} </div>
+                        <div> <b>Codice Carta:</b> {{element.cardCode}} </div>
                         <br>
                         <div> <b>Codice Installazione:</b> {{ element.installationId?.installationCode }} </div>
                         <br>
                         <div> <b>Imei:</b> {{element.installationId?.imei}} </div>
-                        <br>
-                        <div> <b>Note 1:</b> {{element.note1}} </div>
-                        <br>
-                        <div> <b>Note 2:</b> {{element.note2}} </div>
                     </ul>
                 </div>
             </div>
@@ -131,7 +135,7 @@
     <mat-paginator
         [length]="dataSource.data.length" 
         showFirstLastButtons 
-        [pageSizeOptions]="[5, 10, 25, 100]" 
+        [pageSizeOptions]="[10, 25, 50, 100]" 
         aria-label="Select page of users">
     </mat-paginator>
 </mat-card-footer>
