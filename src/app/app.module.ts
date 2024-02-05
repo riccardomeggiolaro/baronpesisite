@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -77,6 +77,7 @@ import { MaterialTableComponent } from './components/materials-page/material-tab
 import { MaterialFilterComponent } from './components/materials-page/material-filter/material-filter.component';
 import { AddMaterialComponent } from './components/materials-page/add-material/add-material.component';
 import { EditMaterialComponent } from './components/materials-page/edit-material/edit-material.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -161,6 +162,12 @@ import { EditMaterialComponent } from './components/materials-page/edit-material
       color: "darkgreen",
     }),
     NgProgressHttpModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
