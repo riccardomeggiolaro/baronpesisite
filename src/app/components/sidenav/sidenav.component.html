@@ -1,25 +1,25 @@
 <mat-toolbar class="navbar" *ifAuthenticated>
     <img src="assets/logo-baron-pesi.svg" alt="" class="button" mat-menu-item>
-    <button class="button" mat-menu-item routerLink="events">
+    <button class="button" mat-menu-item routerLink="events" routerLinkActive="active-link">
         Eventi
     </button>
-    <button class="button" mat-menu-item routerLink="cards">
+    <button class="button" mat-menu-item routerLink="cards" routerLinkActive="active-link">
         Carte
     </button>
     <span class="example-spacer"></span>
-    <button class="button" mat-menu-item routerLink="subjects">
+    <button class="button" mat-menu-item routerLink="subjects" routerLinkActive="active-link">
         Soggetti
     </button>
     <span class="example-spacer"></span>
-    <button class="button" mat-menu-item routerLink="materials">
+    <button class="button" mat-menu-item routerLink="materials" routerLinkActive="active-link">
         Materiali
     </button>
     <span class="example-spacer"></span>
-    <button class="button" mat-menu-item routerLink="installations" *appIfAdmin>
+    <button class="button" mat-menu-item routerLink="installations" routerLinkActive="active-link" *appIfAdmin>
         Installazioni
     </button>
     <span class="example-spacer"></span>
-    <button class="button" mat-menu-item routerLink="users" *appIfAdmin>
+    <button class="button" mat-menu-item routerLink="users" routerLinkActive="active-link" *appIfAdmin>
         Utenti
     </button>
     <span class="toolbar-item-spacer"></span>
@@ -38,12 +38,12 @@
     <div class="menu-mobile">
         <button mat-icon-button [matMenuTriggerFor]="menuMobile"><mat-icon>menu</mat-icon></button>
         <mat-menu #menuMobile="matMenu">
-            <button mat-menu-item routerLink="events">Eventi</button>
-            <button mat-menu-item routerLink="cards">Carte</button>
-            <button mat-menu-item routerLink="subjects">Soggetti</button>
-            <button mat-menu-item routerLink="materials">Materiali</button>
-            <button mat-menu-item routerLink="installations" *appIfAdmin>Installazioni</button>
-            <button mat-menu-item routerLink="users" *appIfAdmin>Utenti</button>
+            <button mat-menu-item routerLink="events" routerLinkActive="active-link">Eventi</button>
+            <button mat-menu-item routerLink="cards" routerLinkActive="active-link">Carte</button>
+            <button mat-menu-item routerLink="subjects" routerLinkActive="active-link">Soggetti</button>
+            <button mat-menu-item routerLink="materials" routerLinkActive="active-link">Materiali</button>
+            <button mat-menu-item routerLink="installations" routerLinkActive="active-link" *appIfAdmin>Installazioni</button>
+            <button mat-menu-item routerLink="users" routerLinkActive="active-link" *appIfAdmin>Utenti</button>
             <button mat-menu-item routerLink="my-account">Il mio profilo</button>
             <button mat-menu-item (click)="sidenav.close(); authSrv.logout()">
                 <mat-icon>exit_to_app</mat-icon>Logout

@@ -49,3 +49,11 @@ mat-sidenav-content{
 img{
     height: 200% !important;
 }
+.active-link{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-radius: 5px 5px 0px 0px;
+}
+.active-link:hover{
+    background-color: var(--secondary-color) !important;
+}
