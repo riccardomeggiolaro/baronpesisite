@@ -1,0 +1,93 @@
+{
+  "configVersion": 1,
+  "timestamp": 1707133082412,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main.js",
+        "/manifest.webmanifest",
+        "/polyfills.js",
+        "/runtime.js",
+        "/styles.css",
+        "/vendor.js"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/icons/logo-baron-pesi-128x128.png",
+        "/assets/icons/logo-baron-pesi-144x144.png",
+        "/assets/icons/logo-baron-pesi-152x152.png",
+        "/assets/icons/logo-baron-pesi-192x192.png",
+        "/assets/icons/logo-baron-pesi-384x384.png",
+        "/assets/icons/logo-baron-pesi-512x512.png",
+        "/assets/icons/logo-baron-pesi-72x72.png",
+        "/assets/icons/logo-baron-pesi-96x96.png",
+        "/assets/logo-baron-pesi.svg",
+        "/primeicons.svg",
+        "/primeicons.ttf",
+        "/primeicons.woff",
+        "/primeicons.woff2"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/icons/logo-baron-pesi-128x128.png": "a51fbb6517f800642173cfdb51eb44febf038f53",
+    "/assets/icons/logo-baron-pesi-144x144.png": "5226c59f8e1b4d68a2fad327f3d69950bc1ab31c",
+    "/assets/icons/logo-baron-pesi-152x152.png": "3513f335783f023ecd2702558f158d049c0d2063",
+    "/assets/icons/logo-baron-pesi-192x192.png": "0bee6ee10e1b3536407c8ff3f6fe4cc6d79a4f5d",
+    "/assets/icons/logo-baron-pesi-384x384.png": "e45cab5462d07754ecb9383953086d6206e8ba6a",
+    "/assets/icons/logo-baron-pesi-512x512.png": "dd77c9b1d102cc66d8fab8f8710ce06daef4333d",
+    "/assets/icons/logo-baron-pesi-72x72.png": "7aacfa2b9926ace6ff7b87b436d8b37db38b51c1",
+    "/assets/icons/logo-baron-pesi-96x96.png": "ba5601de89fc5ec284ffa564d0007c3c81e9148a",
+    "/assets/logo-baron-pesi.svg": "0a8922d1bebef52e468005942476ee208ce5abba",
+    "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/index.html": "3d62e5e6ff3e8650c4af4439b26ee462bbe8b0b6",
+    "/main.js": "e9a3a5cc20fef8ba9d5414a40c5e9b26d843fc77",
+    "/manifest.webmanifest": "7d248703b53ad9cb4cf0def341646e4bfddf5786",
+    "/polyfills.js": "ad37947f0a655ded944831afd5f6fd521440f1e8",
+    "/primeicons.svg": "d3332a45242b8f6edbf3f3c7176a280e7edcd961",
+    "/primeicons.ttf": "ceeb46d594fde5cc507cdf8b70e38e78fe47653c",
+    "/primeicons.woff": "b1648b50be13350fde8b5d9a6fe78354ddcc43e4",
+    "/primeicons.woff2": "55a4b2a5f02e362405d8d874903af0b5f6a6c15d",
+    "/runtime.js": "b788c24f6711419d110799032a9653ca0b0c97e0",
+    "/styles.css": "72309083975819da0c62f7cb41aa371724199d33",
+    "/vendor.js": "b4258ef11bd55b618a74acda66b8d2084bb7c39c"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
