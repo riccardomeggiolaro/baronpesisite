@@ -25,7 +25,6 @@
         <mat-select formControlName="installationId">
           <mat-option value="">
             <div style="margin: 10px auto 10px auto;">
-              <strong>--nessuna--</strong>
             </div>        
           </mat-option>
           <mat-option *ngFor="let installation of installations$ | async" [value]="installation.id">
@@ -68,7 +67,6 @@
             <mat-select formControlName="installationId">
               <mat-option value="">
                 <div style="margin: 10px auto 10px auto;">
-                  <strong>--nessuna--</strong>
                 </div>        
               </mat-option>
               <mat-option *ngFor="let installation of installations$ | async" [value]="installation.id">

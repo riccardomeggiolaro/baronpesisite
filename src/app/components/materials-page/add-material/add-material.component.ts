@@ -14,7 +14,7 @@ import { SnackbarsService } from 'src/app/services/snackbars.service';
 })
 export class AddMaterialComponent {
   addForm = this.fb.group({
-    description: ['', {validators: Validators.required, max: 50}]
+    description: ['', {validators: Validators.required, max: 30}]
   })
 
   installations$ = this.installatiosSrv.installations$;

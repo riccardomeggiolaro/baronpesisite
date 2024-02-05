@@ -22,7 +22,7 @@ export class EditMaterialComponent {
     @Inject(MAT_DIALOG_DATA) public data: Material,
   ) {
     this.editForm = this.fb.group({
-      description: [data.description, {validators: Validators.required, min: 8, max: 50}]
+      description: [data.description, {validators: Validators.required, max: 30}]
     })
   }
 

@@ -65,7 +65,7 @@ html, body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 }
 
-@media (max-width: 598px){
+@media (max-width: 311px){
     .mat-mdc-paginator-outer-container {
         width: 100%;
     }   
@@ -85,7 +85,7 @@ html, body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 }
 
-@media (max-width: 1235px){
+@media (max-width: 1421px){
     .mat-mdc-paginator-outer-container {
         width: 100%;
     }   
@@ -144,7 +144,7 @@ html, body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 }
 
-@media (max-width: 916px){
+@media (max-width: 454px){
     .filter-materials{
         display: none !important;
     }
@@ -153,7 +153,7 @@ html, body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 }
 
-@media (max-width: 1379px){
+@media (max-width: 1266px){
     .filter-cards{
         display: none !important;
     }
@@ -162,7 +162,7 @@ html, body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 }
 
-@media (max-width: 1325px){
+@media (max-width: 1470px){
     .filter-events{
         display: none !important;
     }
