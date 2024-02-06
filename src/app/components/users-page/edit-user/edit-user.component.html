@@ -25,7 +25,7 @@
       </mat-form-field>
       <mat-form-field [ngStyle]="{'display': isAdmin(editForm.value.accessLevel) ? 'none' : ''}">
         <mat-label>Installazione</mat-label>
-        <mat-select formControlName="idInstallation">
+        <mat-select formControlName="installationId">
           <mat-option *ngFor="let installation of installations$ | async" [value]="installation.id">
             <div style="margin: 10px auto 10px auto;">
               <strong>Codice: </strong>{{ installation.installationCode }}
@@ -40,6 +40,6 @@
   </div>
   <div mat-dialog-actions>
     <button mat-raised-button (click)="onNoClick()" color="warn">Esci</button>
-    <button mat-raised-button (click)="add()" color="primary" [disabled]="!editForm.valid">Salva</button>
+    <button mat-raised-button (click)="edit()" color="primary" [disabled]="!editForm.valid">Salva</button>
   </div>  
 </div>

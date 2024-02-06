@@ -1,6 +1,7 @@
 <h1 mat-dialog-title>Conferma</h1>
 <div mat-dialog-content>
-    <p>Sei sicuro di voler {{ data!.action }}?</p>
+    <p>Sei sicuro di voler {{ data.action ? data.action : "" }}?</p>
+    <p *ngIf="data.text">{{ data.text ? data.text : "" }}</p>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button (click)="onNoClick()" color="warn">No</button>

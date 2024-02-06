@@ -25,7 +25,7 @@ export class AddUserComponent implements OnInit {
     username: ['', {validators: Validators.required, min: 8, max: 50}],
     password: ['', {validators: Validators.required, min: 8, max: 20}],
     accessLevel: ['', {validators: Validators.required}],
-    idInstallation: ['']
+    installationId: ['']
   })
 
   accessLevels!: number[];
@@ -49,7 +49,7 @@ export class AddUserComponent implements OnInit {
     this.user = this.authSrv.getUser();
     this.accessLevels = this.array(this.user?.accessLevel!);
     if(this.accessLevels.length === 1){
-      this.addForm.setValue({username: '', password: '', accessLevel: '1', idInstallation: ''});
+      this.addForm.setValue({username: '', password: '', accessLevel: '1', installationId: ''});
     }
   }
 
@@ -64,15 +64,15 @@ export class AddUserComponent implements OnInit {
 
   add(){
     if(this.addForm.valid){
-      let _idInstallation = null;
-      const { username, password, accessLevel, idInstallation } = this.addForm.value;
-      if(idInstallation) _idInstallation = toInteger(idInstallation);
-      this.usersSrv.add(username!, password!, toInteger(accessLevel!), _idInstallation)
+      let _installationId = null;
+      const { username, password, accessLevel, installationId } = this.addForm.value;
+      if(installationId) _installationId = toInteger(installationId);
+      this.usersSrv.add({username: username!, password: password!, accessLevel: toInteger(accessLevel!), installationId: _installationId})
         .pipe(
           catchError(err => throwError(err))
         )
         .subscribe(
-          (value: iUser) => {
+          (value: User) => {
             this.snackbarsSrv.openSnackBar("Utente aggiunto!", "green");
             this.dialogRef.close();
           },

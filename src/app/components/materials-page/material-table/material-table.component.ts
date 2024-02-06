@@ -63,7 +63,7 @@ export class MaterialTableComponent {
 
   delete(id: number, description: string){
     const dialogRef = this.dialog.open(ConfirmComponent, {
-      data: {action: `eliminare il materiale "${description}"`},
+      data: {action: `eliminare il materiale "${description}"`, text: "Il materiale potrebbe essere associato a degli eventi o a delle carte e potrebbero non essere più associati dopo l'eliminazione."},
     });
 
     dialogRef.afterClosed().subscribe(result => {

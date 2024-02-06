@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, ReplaySubject, catchError, combineLatest, of, switchMap, tap, throwError } from 'rxjs';
-import { User } from './auth.service';
 import { isNil, omitBy } from 'lodash';
 import { environment } from 'src/environments/environment';
 import { admin } from 'src/utils/global';
+import { User } from './auth.service';
 
 export interface UserFilter {
   username?: string | null;
@@ -76,8 +76,10 @@ export class UsersService {
       )
   }
 
-  add(username: string, password: string, accessLevel: number, idInstallation: number | null){
-    return this.http.post<User>(`${this.url}/api/auth/signin`, {username, password, accessLevel, idInstallation})
+  add(iuser: iUser){
+    const data = omitBy(iuser, isNil);
+    if((data["accessLevel"] >= admin)) data["installationId"] = null;
+    return this.http.post<User>(`${this.url}/api/auth/signin`, data)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("add"))

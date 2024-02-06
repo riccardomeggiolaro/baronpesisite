@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Card } from './cards.service';
 import { Installation } from './installations.service';
 import { environment } from 'src/environments/environment';
+import { Material } from './materials.service';
+import { Subject } from './subjects.service';
 
 export interface EventFilter {
   dtMin?: Date | null;
@@ -18,7 +20,6 @@ export interface EventFilter {
 
 export interface Event {
   dt_create: Date;
-  installationId: number | Installation | null;
   progressive: number;
   note1: string;
   note2: number;
@@ -27,9 +28,11 @@ export interface Event {
   weight2: number;
   pid2: string;
   netWeight: number;
-  materialDescription: string;
+  materialId?: Material | string | null;
+  subjectId?: Subject | string | null;
   cardId?: Card | string | null;
   rowId: number;
+  installationId?: number | Installation | null;
 }
 
 @Injectable({

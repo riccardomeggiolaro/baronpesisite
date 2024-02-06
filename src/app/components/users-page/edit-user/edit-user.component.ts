@@ -37,7 +37,7 @@ export class EditUserComponent {
       username: [data.username, {validators: Validators.required, min: 8, max: 50}],
       password: [null, {min: 8, max: 20}],
       accessLevel: [data.accessLevel],
-      idInstallation: [data.installationId?.id],
+      installationId: [data.installationId?.id],
       able: [Boolean(data.able)]
     })
   }
@@ -46,7 +46,7 @@ export class EditUserComponent {
     this.user = this.authSrv.getUser();
     this.accessLevels = this.array(this.user?.accessLevel!);
     if(this.accessLevels.length === 1){
-      this.editForm.setValue({username: '', password: '', accessLevel: '1', idInstallation: ''});
+      this.editForm.setValue({username: '', password: '', accessLevel: '1', installationId: ''});
     }
   }
 
@@ -59,10 +59,10 @@ export class EditUserComponent {
     this.dialogRef.close();
   }
 
-  add(){
+  edit(){
     if(this.editForm.valid){
-      const { username, password, accessLevel, idInstallation, able } = this.editForm.value;
-      this.usersSrv.edit(this.data.username, {username: (username === this.data.username ? null : username), password: (password! === '' ? null : password), accessLevel: toInteger(accessLevel!), installationId: (idInstallation ? toNumber(idInstallation) : null), able: able})
+      const { username, password, accessLevel, installationId, able } = this.editForm.value;
+      this.usersSrv.edit(this.data.username, {username: (username === this.data.username ? null : username), password: (password! === '' ? null : password), accessLevel: toInteger(accessLevel!), installationId: (installationId ? toNumber(installationId) : null), able: able})
         .pipe(
           catchError(err => throwError(err))
         )

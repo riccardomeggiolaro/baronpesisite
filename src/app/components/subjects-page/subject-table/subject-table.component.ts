@@ -63,7 +63,7 @@ export class SubjectTableComponent implements OnDestroy {
 
   delete(id: number, socialReason: string){
     const dialogRef = this.dialog.open(ConfirmComponent, {
-      data: {action: `eliminare il soggetto "${socialReason}"`},
+      data: {action: `eliminare il soggetto "${socialReason}"`, text: "Il soggetto potrebbe essere associato a degli eventi o a delle carte e potrebbero non essere più associati dopo l'eliminazione."},
     });
 
     dialogRef.afterClosed().subscribe(result => {
