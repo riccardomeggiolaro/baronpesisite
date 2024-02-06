@@ -38,7 +38,7 @@ interface PeriodicElement {
   ],
 })
 export class EventTableComponent implements OnDestroy {
-  displayedColumns: string[] = ["progressive", 'dt_create', "cardId.numberCard", "vehicle", "plate", "socialReason", 'pid1_pid2', 'weight1', 'weight2', 'netWeight', 'material', 'installationId.description', 'actions'];
+  displayedColumns: string[] = ["progressive", 'dt_create', "numberCard", "vehicle", "plate", "socialReason", 'pid1_pid2', 'weight1', 'weight2', 'netWeight', 'material', 'description', 'actions'];
   dataSource: MatTableDataSource<Event>;
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement!: PeriodicElement | null;

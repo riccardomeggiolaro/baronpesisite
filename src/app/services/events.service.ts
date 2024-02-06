@@ -28,11 +28,11 @@ export interface Event {
   weight2: number;
   pid2: string;
   netWeight: number;
-  materialId?: Material | string | null;
-  subjectId?: Subject | string | null;
-  cardId?: Card | string | null;
+  materialId?: Material | number | null;
+  subjectId?: Subject | number | null;
+  cardCode?: Card | string | null;
   rowId: number;
-  installationId?: number | Installation | null;
+  installationId?: Installation | number | null;
 }
 
 @Injectable({
