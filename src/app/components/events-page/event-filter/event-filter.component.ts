@@ -60,6 +60,7 @@ export class EventFilterComponent {
     )
     .subscribe(value => {
       const v = value as EventFilter;
+      console.log(v)
       v.dtMax?.setHours(23);
       v.dtMax?.setMinutes(59);
       this.router.navigate([], {queryParams: v});

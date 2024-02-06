@@ -13,7 +13,7 @@ export interface EventFilter {
   plate?: string | null;
   material?: string | null;
   socialReason?: string | null;
-  idInstallation?: number | null;
+  installationId?: number | null;
 }
 
 export interface Event {
@@ -28,7 +28,7 @@ export interface Event {
   pid2: string;
   netWeight: number;
   materialDescription: string;
-  cardCode?: Card | string | null;
+  cardId?: Card | string | null;
   rowId: number;
 }
 
@@ -68,6 +68,7 @@ export class EventsService {
   }
 
   list(filters: EventFilter) {
+    console.log(filters)
     this._filters$.next(filters);
     this._actions$.next("filter");
   }
