@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://on.baron.it/apilavaleggiana'
+    apiUrl: 'http://localhost:3000/api'
 };

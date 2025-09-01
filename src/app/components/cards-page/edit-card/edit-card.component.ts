@@ -41,6 +41,7 @@ export class EditCardComponent {
     this.editForm = this.fb.group({
       vehicle: [data.vehicle, Validators.maxLength(20)],
       plate: [data.plate, Validators.maxLength(20)],
+      tare: [data.tare, [Validators.min(1), Validators.max(99999)]],
       materialId: [data.materialId?.id],
       subjectId: [data.subjectId?.id]
     })
@@ -57,10 +58,11 @@ export class EditCardComponent {
 
   edit(){
     if(this.editForm.valid){
-      const { vehicle, plate, materialId, subjectId } = this.editForm.value;
+      const { vehicle, plate, tare, materialId, subjectId } = this.editForm.value;
       const card: editCard = {
         vehicle: vehicle ? vehicle : null,
         plate: plate ? plate : null,
+        tare: tare ? tare : null,
         materialId: materialId ? toNumber(materialId) : null,
         subjectId: subjectId !== null ? toNumber(subjectId) : null
       }

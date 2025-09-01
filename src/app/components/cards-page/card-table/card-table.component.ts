@@ -24,7 +24,7 @@ export interface iCard {
   styleUrls: ['./card-table.component.css']
 })
 export class CardTableComponent implements OnDestroy {
-  displayedColumns: string[] = ['numberCard', 'cardCode', 'vehicle', 'plate', 'materialId.description', 'subjectId.socialReason', 'installationId.description', 'actions'];
+  displayedColumns: string[] = ['numberCard', 'cardCode', 'vehicle', 'plate', 'tare', 'materialId.description', 'subjectId.socialReason', 'installationId.description', 'actions'];
   dataSource: MatTableDataSource<Card>;
   filter: CardFilter | null | undefined;
 
@@ -36,7 +36,7 @@ export class CardTableComponent implements OnDestroy {
   constructor(private cardSrv: CardsService,
               private dialog: MatDialog) {
       this.dataSource = new MatTableDataSource();
-      this.dataSource.sortingDataAccessor = get; 
+      this.dataSource.sortingDataAccessor = get;
       this.dataSource.sort = this.sort;
     }
 
@@ -48,7 +48,7 @@ export class CardTableComponent implements OnDestroy {
       .subscribe((cards) => {
         this.dataSource.data = cards;
         this.dataSource._updateChangeSubscription();
-      })   
+      })
     this.cardSrv.filters$.subscribe((value) => {
       this.filter = value;
     })

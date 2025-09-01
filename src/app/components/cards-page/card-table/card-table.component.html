@@ -1,6 +1,6 @@
 <mat-card-content>
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table-cards">
-        
+
         <ng-container matColumnDef="numberCard">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero Carta </th>
             <td mat-cell *matCellDef="let row"> {{row.numberCard}} </td>
@@ -19,6 +19,11 @@
         <ng-container matColumnDef="plate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Targa </th>
             <td mat-cell *matCellDef="let row"> {{row.plate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tare">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tara </th>
+            <td mat-cell *matCellDef="let row"> {{row.tare}} </td>
         </ng-container>
 
         <ng-container matColumnDef="materialId.description">
@@ -54,7 +59,7 @@
 
         <!-- Row shown when there is no matching data. -->
         <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">Nessun dato trovato per i filtri 
+            <td class="mat-cell" colspan="4">Nessun dato trovato per i filtri
                 {{ filter?.numberCard | string }}
                 {{ filter?.plate | string }}
                 {{ filter?.materialDescription | string }}
@@ -66,10 +71,10 @@
 </mat-card-content>
 <br>
 <mat-card-footer>
-    <mat-paginator 
-        [length]="dataSource.data.length" 
-        showFirstLastButtons 
-        [pageSizeOptions]="[10, 25, 50, 100]" 
+    <mat-paginator
+        [length]="dataSource.data.length"
+        showFirstLastButtons
+        [pageSizeOptions]="[10, 25, 50, 100]"
         aria-label="Select page of users">
     </mat-paginator>
 </mat-card-footer>

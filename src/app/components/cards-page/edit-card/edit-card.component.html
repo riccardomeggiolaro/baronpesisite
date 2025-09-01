@@ -11,11 +11,15 @@
             <input matInput type="text" formControlName="plate" [maxlength]="20">
         </mat-form-field>
         <mat-form-field>
+            <mat-label>Tara</mat-label>
+            <input matInput type="number" formControlName="tare" [min]=100 [max]=99999>
+        </mat-form-field>
+        <mat-form-field>
           <mat-label>Materiale</mat-label>
           <mat-select formControlName="materialId">
             <mat-option [value]="null">
               <div style="margin: 10px auto 10px auto;">
-              </div>                
+              </div>
             </mat-option>
             <mat-option *ngFor="let material of materials$ | async" [value]="material.id">
               <div style="margin: 10px auto 10px auto;">
@@ -29,7 +33,7 @@
             <mat-select formControlName="subjectId">
               <mat-option [value]="null">
                 <div style="margin: 10px auto 10px auto;">
-                </div>                
+                </div>
               </mat-option>
               <mat-option *ngFor="let subject of subjects$ | async" [value]="subject.id">
                 <div style="margin: 10px auto 10px auto;">
@@ -43,5 +47,5 @@
     <div mat-dialog-actions>
       <button mat-raised-button (click)="onNoClick()" color="warn">Esci</button>
       <button mat-raised-button (click)="edit()" color="primary" [disabled]="!editForm.valid">Salva</button>
-    </div>  
+    </div>
   </div>
