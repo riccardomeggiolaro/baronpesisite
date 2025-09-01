@@ -12,7 +12,8 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Tara</mat-label>
-            <input matInput type="number" formControlName="tare" [min]=100 [max]=99999>
+            <input matInput type="number" formControlName="tare" [min]="1" [max]="99999"
+                  (input)="checkTareLength($event)">
         </mat-form-field>
         <mat-form-field>
           <mat-label>Materiale</mat-label>

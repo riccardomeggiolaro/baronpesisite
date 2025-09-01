@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Card, CardsService, editCard } from 'src/app/services/cards.service';
 import { InstallationsService } from 'src/app/services/installations.service';
@@ -54,6 +54,14 @@ export class EditCardComponent {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  checkTareLength(event: any) {
+    const value = event.target.value;
+    if (value.length > 5) {
+      event.target.value = value.slice(0, 5);
+      this.editForm.patchValue({ tare: parseInt(value.slice(0, 5)) });
+    }
   }
 
   edit(){
