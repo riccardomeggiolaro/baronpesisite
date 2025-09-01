@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<{user: User, token: string}>(`${this.url}/api/auth/login`, {username, password})
+    return this.http.post<{user: User, token: string}>(`${this.url}/auth/login`, {username, password})
       .pipe(
         tap(res => this.jwtSrv.setToken(res.token)),
         tap(res => this._currentUser$.next(res.user)),
@@ -47,7 +47,7 @@ export class AuthService {
   }
 
   changePassword(oldPassword: string, newPassword: string, repeatPassword: string){
-    return this.http.patch<{message: string}>(`${this.url}/api/user/update/change-password`, {oldPassword, newPassword, repeatPassword})
+    return this.http.patch<{message: string}>(`${this.url}/user/update/change-password`, {oldPassword, newPassword, repeatPassword})
       .pipe(
         map(res => res.message)
       )
@@ -66,7 +66,7 @@ export class AuthService {
   }
 
   fetchUser(): Observable<User>  {
-    return this.http.get<User>(`${this.url}/api/user/me`)
+    return this.http.get<User>(`${this.url}/user/me`)
       .pipe(
         tap(res => this._currentUser$.next(res)),
         tap(res => this.lastAccess("online")),
@@ -93,6 +93,6 @@ export class AuthService {
       const now = moment()
       obj["date"] = now.format("YYYY-MM-DD HH:mm:ss")
     };
-    this.http.patch(`${this.url}/api/user/update/last-access`, obj).subscribe();
+    this.http.patch(`${this.url}/user/update/last-access`, obj).subscribe();
   }
 }

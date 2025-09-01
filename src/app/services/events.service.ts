@@ -38,7 +38,7 @@ export interface Event {
 @Injectable({
   providedIn: 'root'
 })
-export class EventsService {  
+export class EventsService {
   private url = environment.apiUrl;
 
   private _filters$ = new BehaviorSubject<EventFilter | null>(null);
@@ -58,7 +58,7 @@ export class EventsService {
     switchMap(
       ([_, filters]) => {
         const q = omitBy(filters, isNil);
-        return this.http.get<Event[]>(`${this.url}/api/event/list`, {params: q})
+        return this.http.get<Event[]>(`${this.url}/event/list`, {params: q})
           .pipe(
             catchError(err => of([]))
           )
@@ -78,7 +78,7 @@ export class EventsService {
 
   exportList(ext: "xlsx" | "csv" | "pdf") {
     const q = omitBy(this._filters$.value, isNil);
-    return this.http.get(`${this.url}/api/event/export-list/${ext}`, {params: q, responseType: 'blob'}).subscribe((blob: Blob) => {
+    return this.http.get(`${this.url}/event/export-list/${ext}`, {params: q, responseType: 'blob'}).subscribe((blob: Blob) => {
       var blob = new Blob([blob], {type: `application/${ext}`})
       var blobURL = URL.createObjectURL(blob);
       if(ext === "pdf"){
@@ -99,7 +99,7 @@ export class EventsService {
   }
 
   delete(id: number) {
-    return this.http.delete<{message: string}>(`${this.url}/api/event/${id}`)
+    return this.http.delete<{message: string}>(`${this.url}/event/${id}`)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("delete"))

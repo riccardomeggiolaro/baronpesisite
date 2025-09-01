@@ -46,7 +46,7 @@ export class SubjectsService {
     switchMap(
       ([_, filters]) => {
         const q = omitBy(filters, isNil);
-        return this.http.get<Subject[]>(`${this.url}/api/subject/list`, {params: q})
+        return this.http.get<Subject[]>(`${this.url}/subject/list`, {params: q})
           .pipe(
             catchError(err => of([]))
           )
@@ -54,7 +54,7 @@ export class SubjectsService {
     )
   )
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this._requestUpdate$.next();
   }
 
@@ -64,7 +64,7 @@ export class SubjectsService {
   }
 
   delete(id: number) {
-    return this.http.delete<{message: string}>(`${this.url}/api/subject/${id}`)
+    return this.http.delete<{message: string}>(`${this.url}/subject/${id}`)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("delete"))
@@ -73,7 +73,7 @@ export class SubjectsService {
 
   add(subject: iSubject){
     const data = omitBy(subject, isNil);
-    return this.http.post<Subject>(`${this.url}/api/subject/add-subject`, data)
+    return this.http.post<Subject>(`${this.url}/subject/add-subject`, data)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("add"))
@@ -84,7 +84,7 @@ export class SubjectsService {
     if(subject.socialReason === null){
       delete subject.socialReason;
     }
-    return this.http.patch<{message: string}>(`${this.url}/api/subject/${id}`, subject)
+    return this.http.patch<{message: string}>(`${this.url}/subject/${id}`, subject)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("change"))

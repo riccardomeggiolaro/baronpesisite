@@ -43,7 +43,7 @@ export class UsersService {
     switchMap(
       ([_, filters]) => {
         const q = omitBy(filters, isNil);
-        return this.http.get<User[]>(`${this.url}/api/user/list`, {params: q})
+        return this.http.get<User[]>(`${this.url}/user/list`, {params: q})
           .pipe(
             catchError(err => of([]))
           )
@@ -61,7 +61,7 @@ export class UsersService {
   }
 
   delete(username: string) {
-    return this.http.delete<{message: string}>(`${this.url}/api/user/${username}`)
+    return this.http.delete<{message: string}>(`${this.url}/user/${username}`)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("delete"))
@@ -69,7 +69,7 @@ export class UsersService {
   }
 
   disable(username: string, able: boolean){
-    return this.http.patch<{message: string}>(`${this.url}/api/user/${username}`, {able})
+    return this.http.patch<{message: string}>(`${this.url}/user/${username}`, {able})
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("change"))
@@ -79,7 +79,7 @@ export class UsersService {
   add(iuser: iUser){
     const data = omitBy(iuser, isNil);
     if((data["accessLevel"] >= admin)) data["installationId"] = null;
-    return this.http.post<User>(`${this.url}/api/auth/signin`, data)
+    return this.http.post<User>(`${this.url}/auth/signin`, data)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("add"))
@@ -89,7 +89,7 @@ export class UsersService {
   edit(user: string, iuser: iUser){
     const data = omitBy(iuser, isNil);
     if((data["accessLevel"] >= admin)) data["installationId"] = null;
-    return this.http.patch<{message: string}>(`${this.url}/api/user/${user}`, data)
+    return this.http.patch<{message: string}>(`${this.url}/user/${user}`, data)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("change"))

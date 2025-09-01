@@ -40,7 +40,7 @@ export class MaterialsService {
     switchMap(
       ([_, filters]) => {
         const q = omitBy(filters, isNil);
-        return this.http.get<Material[]>(`${this.url}/api/material/list`, {params: q})
+        return this.http.get<Material[]>(`${this.url}/material/list`, {params: q})
           .pipe(
             catchError(err => of([]))
           )
@@ -48,7 +48,7 @@ export class MaterialsService {
     )
   )
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this._requestUpdate$.next();
   }
 
@@ -58,7 +58,7 @@ export class MaterialsService {
   }
 
   delete(id: number) {
-    return this.http.delete<{message: string}>(`${this.url}/api/material/${id}`)
+    return this.http.delete<{message: string}>(`${this.url}/material/${id}`)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("delete"))
@@ -67,7 +67,7 @@ export class MaterialsService {
 
   add(material: iMaterial){
     const data = omitBy(material, isNil);
-    return this.http.post<Material>(`${this.url}/api/material/add-material`, data)
+    return this.http.post<Material>(`${this.url}/material/add-material`, data)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("add"))
@@ -78,7 +78,7 @@ export class MaterialsService {
     if(material.description === null){
       delete material.description;
     }
-    return this.http.patch<{message: string}>(`${this.url}/api/material/${id}`, material)
+    return this.http.patch<{message: string}>(`${this.url}/material/${id}`, material)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("change"))

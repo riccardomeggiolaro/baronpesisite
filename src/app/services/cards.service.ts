@@ -59,7 +59,7 @@ export class CardsService {
     switchMap(
       ([_, filters]) => {
         const q = omitBy(filters, isNil);
-        return this.http.get<Card[]>(`${this.url}/api/card/list`, {params: q})
+        return this.http.get<Card[]>(`${this.url}/card/list`, {params: q})
           .pipe(
             catchError(err => of([]))
           )
@@ -77,7 +77,7 @@ export class CardsService {
   }
 
   edit(id: number, card: editCard){
-    return this.http.patch<{message: string}>(`${this.url}/api/card/${id}`, card)
+    return this.http.patch<{message: string}>(`${this.url}/card/${id}`, card)
       .pipe(
         tap(res => this._requestUpdate$.next())
       )

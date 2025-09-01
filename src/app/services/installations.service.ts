@@ -45,7 +45,7 @@ export class InstallationsService {
     switchMap(
       ([_, filters]) => {
         const q = omitBy(filters, isNil);
-        return this.http.get<Installation[]>(`${this.url}/api/installation/list`, {params: q})
+        return this.http.get<Installation[]>(`${this.url}/installation/list`, {params: q})
           .pipe(
             catchError(err => of([]))
           )
@@ -63,14 +63,14 @@ export class InstallationsService {
   }
 
   assigned() {
-    return this.http.get<Installation>(`${this.url}/api/installation/assigned`)
+    return this.http.get<Installation>(`${this.url}/installation/assigned`)
       .pipe(
         tap(res => this._requestUpdate$.next())
       )
   }
 
   delete(id: number) {
-    return this.http.delete<{message: string}>(`${this.url}/api/installation/${id}`)
+    return this.http.delete<{message: string}>(`${this.url}/installation/${id}`)
       .pipe(
         tap(res => this._requestUpdate$.next()),
         tap(res => this._actions$.next("delete"))
@@ -78,7 +78,7 @@ export class InstallationsService {
   }
 
   add(installationCode: string, description: string, imei: string){
-    return this.http.post<Installation>(`${this.url}/api/installation/add-installation`, {installationCode, description, imei})
+    return this.http.post<Installation>(`${this.url}/installation/add-installation`, {installationCode, description, imei})
       .pipe(
         tap(res => {
           this._filters$.next(this._filters$.value);
@@ -90,7 +90,7 @@ export class InstallationsService {
 
   edit(id: number, installation: iInstallation){
     const data = omitBy(installation, isNil);
-    return this.http.patch<{message: string}>(`${this.url}/api/installation/${id}`, data)
+    return this.http.patch<{message: string}>(`${this.url}/installation/${id}`, data)
       .pipe(
         tap(res => {
           this._filters$.next(this._filters$.value);
