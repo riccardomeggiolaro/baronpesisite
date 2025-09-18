@@ -71,6 +71,11 @@
 </mat-card-content>
 <br>
 <mat-card-footer>
+    <div>
+        <button mat-raised-button class="excel" (click)="exportArray('xlsx')">EXCEL</button>
+        <button mat-raised-button color="primary" (click)="exportArray('csv')">CSV</button>
+        <button mat-raised-button color="warn" (click)="exportArray('pdf')">PDF</button>
+    </div>
     <mat-paginator
         [length]="dataSource.data.length"
         showFirstLastButtons

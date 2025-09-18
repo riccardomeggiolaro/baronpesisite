@@ -6,21 +6,41 @@ table {
   display: flex;
   flex-direction: row;
 }
+.div{
+    position: fixed;
+    margin: auto;
+}
 button{
     margin: 3px;
-}
-mat-card-footer{
-    display: flex;
-    flex-wrap: wrap;
-    padding-bottom: 5px;
-    justify-content: flex-end;
 }
 mat-paginator{
     background-color: var(--primary-color);
     color: var(--white);
     border-radius: 50px;
 }
-.div{
-    position: fixed; 
-    margin: auto;
+mat-card-footer{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 5px;
+}
+mat-card-footer > div{
+    flex: 20%;
+}
+mat-card-footer > mat-paginator{
+    flex-direction: 80%;
+}
+@media (max-width: 800px){
+    mat-card-footer > div,
+    mat-card-footer > mat-paginator{
+        flex: 100%;
+    }
+}
+mat-card-footer div{
+    padding-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+mat-card-footer div .excel{
+    background-color: var(--excel);
+    color: var(--white);
 }

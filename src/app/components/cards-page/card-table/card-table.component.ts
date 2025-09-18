@@ -70,6 +70,10 @@ export class CardTableComponent implements OnDestroy {
     this.destroyed$.complete();
   }
 
+  exportArray(ext: "xlsx" | "csv" | "pdf") {
+    this.cardSrv.exportList(ext);
+  }
+
   edit(card: Card){
     const dialogRef = this.dialog.open(EditCardComponent, {
       data: card,
