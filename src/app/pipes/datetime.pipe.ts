@@ -6,15 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DatetimePipe implements PipeTransform {
   transform(value: Date): string | null {
     if(value) {
-      const date = new Date(value);
-      var giorno = date.getDate();
-      var mese = date.getMonth() + 1; // I mesi partono da zero, quindi aggiungi 1
-      var anno = date.getFullYear();
-      var ore = date.getHours();
-      var minuti = date.getMinutes();
-      // Formatta la stringa con le informazioni ottenute
-      var stringaFormattata = giorno + '/' + mese + '/' + anno + ' ' + ore + ':' + minuti;  
-      return stringaFormattata;
+      const d = new Date(value);
+      const formatted = `${String(d.getUTCDate()).padStart(2, '0')}/${String(d.getUTCMonth() + 1).padStart(2, '0')}/${d.getUTCFullYear()} ${String(d.getUTCHours()).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')}`;
+      return formatted;
     }
     return null;
   }
